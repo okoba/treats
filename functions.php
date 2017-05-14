@@ -158,3 +158,128 @@ if (TD_DEBUG_LIVE_THEME_STYLE) {
 }
 
 //print_r(td_global::$all_theme_panels_list);
+//CUSTOM LOGIN PAGE
+function my_custom_login() {
+echo '<link rel="stylesheet" type="text/css" href="' . get_bloginfo('stylesheet_directory') . '/login/custom-login-styles.css" />';
+}
+add_action('login_head', 'my_custom_login');
+
+function my_login_logo_url() {
+return get_bloginfo( 'url' );
+}
+add_filter( 'login_headerurl', 'my_login_logo_url' );
+
+function my_login_logo_url_title() {
+return 'Treats on A Budget';
+}
+add_filter( 'login_headertitle', 'my_login_logo_url_title' );
+function login_error_override()
+{
+    return 'Incorrect login details.';
+}
+add_filter('login_errors', 'login_error_override');
+function my_login_head() {
+remove_action('login_head', 'wp_shake_js', 12);
+}
+add_action('login_head', 'my_login_head');
+function login_checked_remember_me() {
+add_filter( 'login_footer', 'rememberme_checked' );
+}
+add_action( 'init', 'login_checked_remember_me' );
+
+function rememberme_checked() {
+echo "<script>document.getElementById('rememberme').checked = true;</script>";
+}
+//Custom color on ADMIN BAr On Mobile Devices
+add_action('wp_head','color_address_bar');
+
+function color_address_bar() {
+	
+	$color ="#CB9558";
+	
+	// Forgive user if no "#" before color
+	$color = (strpos($color,'#') !== false ? $color : '#' . $color);
+	
+	// HTML to add to header
+	$color_meta = '
+	<!-- Chrome, Firefox OS and Opera -->
+	<meta name="theme-color" content="' . $color . '">
+	<!-- Windows Phone -->
+	<meta name="msapplication-navbutton-color" content="' . $color . '">
+	<!-- iOS Safari , works only in black. to set this off, comment the next line -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">';
+
+	echo $color_meta;
+
+}
+//* Adding DNS Prefetching
+function stb_dns_prefetch() {
+echo '<meta http-equiv="x-dns-prefetch-control" content="on">
+<link rel="dns-prefetch" href="//www.googletagmanager.com/" />
+<link rel="dns-prefetch" href="//www.googletagservices.com/" />
+<link rel="dns-prefetch" href="//fonts.googleapis.com" />
+<link rel="dns-prefetch" href="//fonts.gstatic.com" />
+<link rel="dns-prefetch" href="//0.gravatar.com/" />
+<link rel="dns-prefetch" href="//2.gravatar.com/" />
+<link rel="dns-prefetch" href="//1.gravatar.com/" />
+<link rel="dns-prefetch" href="//www.youtube.com/" />';
+}
+add_action('wp_head', 'stb_dns_prefetch', 0);
+
+/*CHRISTOPHER's CUSTOM MODS - 1.10.15 rev15A - (c) 2010-2015 Chris Simmons */
+
+ remove_action( 'wp_head', 'wp_generator' ) ;
+ remove_action( 'wp_head', 'wlwmanifest_link' ) ;
+ remove_action( 'wp_head', 'rsd_link' ) ;
+ remove_action( 'wp_head', 'feed_links', 2 );
+ remove_action( 'wp_head', 'feed_links_extra', 3 );
+
+ add_filter( 'pre_comment_content', 'wp_specialchars' );
+
+ function no_errors_please(){
+   return 'You appear to be up to no good. Please stop now!';
+ }
+ add_filter( 'login_errors', 'no_errors_please' );
+
+ /* Disable YOAST SEO Admin Bar. */
+ function mytheme_admin_bar_render() {
+ 	global $wp_admin_bar;
+ 	$wp_admin_bar->remove_menu('wpseo-menu');
+ }
+ // and we hook our function via
+ add_action( 'wp_before_admin_bar_render', 'mytheme_admin_bar_render' );
+
+ function delete_enclosure(){
+  return '';
+  }
+  add_filter( 'get_enclosed', 'delete_enclosure' );
+  add_filter( 'rss_enclosure', 'delete_enclosure' );
+  add_filter( 'atom_enclosure', 'delete_enclosure' );
+
+ function remove_cssjs_ver( $src ) {
+     if( strpos( $src, '?ver=' ) )
+         $src = remove_query_arg( 'ver', $src );
+     return $src;
+ }
+ add_filter( 'style_loader_src', 'remove_cssjs_ver', 10, 2 );
+ add_filter( 'script_loader_src', 'remove_cssjs_ver', 10, 2 );
+
+ add_filter( 'jpeg_quality', create_function( '', 'return 50;' ) );
+
+ function remove_pingback_url( $output, $show ) {
+     if ( $show == 'pingback_url' ) $output = '';
+     return $output;
+ }
+ add_filter( 'bloginfo_url', 'remove_pingback_url', 10, 2 );
+
+ add_action('init', 'myoverride', 100);
+ function myoverride() {
+     remove_action('wp_head', array(visual_composer(), 'addMetaData'));
+}
+
+function dequeue_visual_composer_css() {
+if (is_single()) {
+    wp_dequeue_style('js_composer_front');
+}
+}
+add_action('wp_enqueue_scripts', 'dequeue_visual_composer_css', 1003);
