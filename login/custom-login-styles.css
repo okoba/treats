@@ -5,15 +5,19 @@ body.login {
   background-position: center;
 }
 
+.login form {
+    background: #CB9558;
+}
+
 .login h1 a {
   background-image: url('login-logo.png');
   background-size: 150px;
   background-position: center top;
   background-repeat: no-repeat;
-  height: 200px;
+  height: 150px;
   font-size: 20px;
   line-height: 1.3em;
-  margin: 0 auto 25px;
+  margin: 0 auto 0;
   padding: 0;
   width: 200px;
   text-indent: -9999px;
