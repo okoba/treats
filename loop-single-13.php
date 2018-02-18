@@ -43,6 +43,19 @@ if (have_posts()) {
             <?php echo $td_mod_single->get_social_sharing_bottom();?>
             <?php echo $td_mod_single->get_next_prev_posts();?>
             <?php echo $td_mod_single->get_author_box();?>
+<!-- Composite Start -->
+<div id="M311842ScriptRootC204566">
+        <div id="M311842PreloadC204566">
+        Loading...    </div>
+        <script>
+                (function(){
+            var D=new Date(),d=document,b='body',ce='createElement',ac='appendChild',st='style',ds='display',n='none',gi='getElementById';
+            var i=d[ce]('iframe');i[st][ds]=n;d[gi]("M311842ScriptRootC204566")[ac](i);try{var iw=i.contentWindow.document;iw.open();iw.writeln("<ht"+"ml><bo"+"dy></bo"+"dy></ht"+"ml>");iw.close();var c=iw[b];}
+            catch(e){var iw=d;var c=d[gi]("M311842ScriptRootC204566");}var dv=iw[ce]('div');dv.id="MG_ID";dv[st][ds]=n;dv.innerHTML=204566;c[ac](dv);
+            var s=iw[ce]('script');s.async='async';s.defer='defer';s.charset='utf-8';s.src="//jsc.mgid.com/t/r/treats.co.ke.204566.js?t="+D.getYear()+D.getMonth()+D.getDate()+D.getHours();c[ac](s);})();
+    </script>
+</div>
+<!-- Composite End -->
 	        <?php echo $td_mod_single->get_item_scope_meta();?>
         </footer>
 
