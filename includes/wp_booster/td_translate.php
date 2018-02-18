@@ -281,7 +281,7 @@ if (class_exists('SitePress')) {
 
 } else {
 	//read the user translations
-	$td_translation_map_user = td_util::get_option('td_translation_map_user');
+	$td_translation_map_user = td_options::get_array('td_translation_map_user');
 }
 
 

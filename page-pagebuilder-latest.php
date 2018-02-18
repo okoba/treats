@@ -33,7 +33,7 @@ if (!empty($post->ID)) {
 	//
 	// the $td_homepage_loop is used instead
     //$td_homepage_loop_filter = get_post_meta($post->ID, 'td_homepage_loop_filter', true); //it's send to td_data_source
-    $td_homepage_loop = get_post_meta($post->ID, 'td_homepage_loop', true);
+    $td_homepage_loop = td_util::get_post_meta_array($post->ID, 'td_homepage_loop');
 
 
     if (!empty($td_homepage_loop['td_layout'])) {
@@ -57,7 +57,7 @@ if (!empty($post->ID)) {
     if (!empty($td_homepage_loop['list_custom_title'])) {
         $td_list_custom_title = $td_homepage_loop['list_custom_title'];
     } else {
-        $td_list_custom_title =__td('LATEST ARTICLES', TD_THEME_NAME);
+        $td_list_custom_title =__td(' WHAT YOU MISSED', TD_THEME_NAME);
     }
 
 

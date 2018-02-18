@@ -15,6 +15,12 @@ Say what demo
   background-color: transparent;
   color: #ff036e;
 }
+@media (min-width: 768px) and (max-width: 1018px) {
+  .td-what .td-header-style-6 .td_mod_mega_menu .item-details a {
+    font-size: 15px;
+    line-height: 20px;
+  }
+}
 .td-what .td-grid-what {
   margin-top: -48px;
 }

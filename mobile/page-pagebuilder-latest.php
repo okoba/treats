@@ -20,7 +20,7 @@ td_global::load_single_post($post);
 
 //read the metadata for the post
 
-$td_homepage_loop = get_post_meta($post->ID, 'td_homepage_loop', true);
+$td_homepage_loop = td_util::get_post_meta_array($post->ID, 'td_homepage_loop');
 
 $td_list_custom_title =__td('LATEST ARTICLES', TD_THEME_NAME);
 if (!empty($td_homepage_loop['list_custom_title'])) {

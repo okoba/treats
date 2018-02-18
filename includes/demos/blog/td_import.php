@@ -78,7 +78,7 @@ td_demo_menus::add_link(array(
 /*  ----------------------------------------------------------------------------
     background - leave empty if you want to make sure that there is NO background on the demo - td_demo_misc::update_background('');
  */
-td_demo_misc::update_background('');
+td_demo_misc::update_background_mobile('td_pic_avatar');
 
 
 
@@ -131,6 +131,12 @@ td_demo_misc::add_ad_image('content_bottom', 'td_blog_full_ad');
 
 //default sidebar
 td_demo_widgets::remove_widgets_from_sidebar('default');
+
+//remove footer widgets > remove existing widgets from footer widgets areas
+td_demo_widgets::remove_widgets_from_sidebar('footer-1');
+td_demo_widgets::remove_widgets_from_sidebar('footer-2');
+td_demo_widgets::remove_widgets_from_sidebar('footer-3');
+
 td_demo_widgets::add_widget_to_sidebar('default', 'td_block_ad_box_widget',
     array (
         'spot_title' => '- Advertisement -',
@@ -164,10 +170,10 @@ td_demo_widgets::add_widget_to_sidebar('default', 'td_block_slide_widget',
 td_demo_widgets::add_widget_to_sidebar('default', 'td_block_social_counter_widget',
     array (
         'custom_title'  => "I'M SOCIAL",
-        'facebook'      => "envato",
-        'twitter'       => "envato",
+        'facebook'      => "tagdiv",
+        'twitter'       => "tagDivofficial",
         'instagram'     => "envato",
-        'youtube'       => "envato",
+        'youtube'       => "tagdiv",
         'header_color'  => '#cb9558'
     )
 );

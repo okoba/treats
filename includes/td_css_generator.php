@@ -154,10 +154,12 @@ function td_css_generator() {
     .td-category-siblings .td-subcat-dropdown a:hover,
     .td-category-siblings .td-subcat-dropdown a.td-current-sub-category,
     .widget a:hover,
+    .td_wp_recentcomments a:hover,
     .archive .widget_archive .current,
     .archive .widget_archive .current a,
     .widget_calendar tfoot a:hover,
     .woocommerce a.added_to_cart:hover,
+    .woocommerce-account .woocommerce-MyAccount-navigation a:hover,
     #bbpress-forums li.bbp-header .bbp-reply-content span a:hover,
     #bbpress-forums .bbp-forum-freshness a:hover,
     #bbpress-forums .bbp-topic-freshness a:hover,
@@ -205,7 +207,8 @@ function td_css_generator() {
     .td-theme-wrap .sf-menu ul .sfHover > a,
     .td-theme-wrap .sf-menu ul .current-menu-ancestor > a,
     .td-theme-wrap .sf-menu ul .current-category-ancestor > a,
-    .td-theme-wrap .sf-menu ul .current-menu-item > a {
+    .td-theme-wrap .sf-menu ul .current-menu-item > a,
+     .td_outlined_btn {
         color: @theme_color;
     }
 
@@ -228,7 +231,8 @@ function td_css_generator() {
     .post .td_quote_box,
     .page .td_quote_box,
     a.vc_btn-black:hover,
-    .td_block_template_5 .td-block-title > * {
+    .td_block_template_5 .td-block-title > *,
+     .td_outlined_btn {
         border-color: @theme_color;
     }
 
@@ -252,8 +256,13 @@ function td_css_generator() {
     .vc_tta-container .vc_tta-color-grey.vc_tta-tabs-position-top.vc_tta-style-classic .vc_tta-tabs-container .vc_tta-tab.vc_active > a,
     .vc_tta-container .vc_tta-color-grey.vc_tta-tabs-position-top.vc_tta-style-classic .vc_tta-tabs-container .vc_tta-tab:hover > a,
     .td_block_template_1 .td-related-title .td-cur-simple-item,
-    .woocommerce .product .products h2,
-    .td-subcat-filter .td-subcat-dropdown:hover .td-subcat-more {
+    .woocommerce .product .products h2:not(.woocommerce-loop-product__title),
+    .td-subcat-filter .td-subcat-dropdown:hover .td-subcat-more, 
+     .td_3D_btn,
+    .td_shadow_btn,
+    .td_default_btn,
+    .td_round_btn, 
+    .td_outlined_btn:hover {
     	background-color: @theme_color;
     }
 
@@ -293,7 +302,7 @@ function td_css_generator() {
     .vc_tta-container .vc_tta-color-grey.vc_tta-tabs-position-top.vc_tta-style-classic .vc_tta-tabs-container .vc_tta-tab.vc_active > a,
     .vc_tta-container .vc_tta-color-grey.vc_tta-tabs-position-top.vc_tta-style-classic .vc_tta-tabs-container .vc_tta-tab:hover > a,
     .td_block_template_1 .td-related-title .td-cur-simple-item,
-    .woocommerce .product .products h2,
+    .woocommerce .product .products h2:not(.woocommerce-loop-product__title),
     .td-subcat-filter .td-subcat-dropdown:hover .td-subcat-more,
     .td-weather-information:before,
     .td-weather-week:before,
@@ -345,7 +354,7 @@ function td_css_generator() {
     .vc_tta-container .vc_tta-color-grey.vc_tta-tabs-position-top.vc_tta-style-classic .vc_tta-tabs-container .vc_tta-tab:hover > a,
     .td-related-title .td-cur-simple-item,
     .woocommerce div.product .woocommerce-tabs ul.tabs li.active,
-    .woocommerce .product .products h2,
+    .woocommerce .product .products h2:not(.woocommerce-loop-product__title),
     .td-theme-wrap .td_block_template_2 .td-block-title > *,
     .td-theme-wrap .td_block_template_3 .td-block-title > *,
     .td-theme-wrap .td_block_template_4 .td-block-title > *,
@@ -966,6 +975,7 @@ function td_css_generator() {
 
     /* @page_title_color */
     .td-page-header h1,
+    .td-page-title,
     .woocommerce-page .page-title {
     	color: @page_title_color;
     }
@@ -1119,7 +1129,7 @@ function td_css_generator() {
     .vc_tta-container .vc_tta-color-grey.vc_tta-tabs-position-top.vc_tta-style-classic .vc_tta-tabs-container .vc_tta-tab > a,
     .td-theme-wrap .td-related-title a,
     .woocommerce div.product .woocommerce-tabs ul.tabs li a,
-    .woocommerce .product .products h2,
+    .woocommerce .product .products h2:not(.woocommerce-loop-product__title),
     .td-theme-wrap .td-block-title {
         @blocks_title
     }
@@ -1135,7 +1145,7 @@ function td_css_generator() {
         padding-top: 0;
     }
     /* @blocks_author */
-    .td-post-author-name a {
+    .td_module_wrap .td-post-author-name a {
         @blocks_author
     }
     /* @blocks_date */
@@ -1272,6 +1282,14 @@ function td_css_generator() {
     .td_module_mx4 .td-module-title a {
     	@module_mx4
     }
+    /* @module_mx5 */
+    .td_module_mx5 .td-module-title a {
+    	@module_mx5
+    }
+    /* @module_mx6 */
+    .td_module_mx6 .td-module-title a {
+    	@module_mx6
+    }
     /* @module_mx7 */
     .td_module_mx7 .td-module-title a {
     	@module_mx7
@@ -1284,6 +1302,30 @@ function td_css_generator() {
     .td_module_mx9 .td-module-title a {
     	@module_mx9
     }
+    /* @module_mx10 */
+    .td_module_mx10 .td-module-title a {
+    	@module_mx10
+    }
+    /* @module_mx11 */
+    .td_module_mx11 .td-module-title a {
+    	@module_mx11
+    }
+    /* @module_mx12 */
+    .td_module_mx12 .td-module-title a {
+    	@module_mx12
+    }
+    /* @module_mx13 */
+    .td_module_mx13 .td-module-title a {
+    	@module_mx13
+    }
+    /* @module_mx14 */
+    .td_module_mx14 .td-module-title a {
+    	@module_mx14
+    }
+    /* @module_mx15 */
+    .td_module_mx15 .td-module-title a {
+    	@module_mx15
+    }
     /* @module_mx16 */
     .td_module_mx16 .td-module-title a {
     	@module_mx16
@@ -1291,6 +1333,42 @@ function td_css_generator() {
     /* @module_mx17 */
     .td_module_mx17 .td-module-title a {
     	@module_mx17
+    }
+    /* @module_mx18 */
+    .td_module_mx18 .td-module-title a {
+    	@module_mx18
+    }
+    /* @module_mx19 */
+    .td_module_mx19 .td-module-title a {
+    	@module_mx19
+    }
+    /* @module_mx20 */
+    .td_module_mx20 .td-module-title a {
+    	@module_mx20
+    }
+    /* @module_mx21 */
+    .td_module_mx21 .td-module-title a {
+    	@module_mx21
+    }
+    /* @module_mx22 */
+    .td_module_mx22 .td-module-title a {
+    	@module_mx22
+    }
+    /* @module_mx23 */
+    .td_module_mx23 .td-module-title a {
+    	@module_mx23
+    }
+    /* @module_mx24 */
+    .td_module_mx24 .td-module-title a {
+    	@module_mx24
+    }
+    /* @module_mx25 */
+    .td_module_mx25 .td-module-title a {
+    	@module_mx25
+    }
+    /* @module_mx26 */
+    .td_module_mx26 .td-module-title a {
+    	@module_mx26
     }
     /* @news_ticker */
     .td_block_trending_now .entry-title a {
@@ -1657,7 +1735,7 @@ function td_css_generator() {
 		@default_buttons
 	}
 	/* @woocommerce_products */
-	.woocommerce .product a h3,
+	.woocommerce .product a .woocommerce-loop-product__title,
 	.woocommerce .widget.woocommerce .product_list_widget a,
 	.woocommerce-cart .woocommerce .product-name a {
 		@woocommerce_products
@@ -1798,19 +1876,19 @@ function td_css_generator() {
     }
 
 	// read line-height for the main-menu to align the logo in menu // nu e folosit
-	$td_menu_height = td_util::get_option('td_fonts');
+	$td_menu_height = td_options::get_array('td_fonts');
 	if (!empty($td_menu_height['main_menu']['line_height'])) {
 		$td_css_compiler->load_setting_raw('main-menu-height', $td_menu_height['main_menu']['line_height']);
 	}
 
     // read line-height for the top-menu to align the social icons in top menu
-    $td_top_menu_height = td_util::get_option('td_fonts');
+    $td_top_menu_height = td_options::get_array('td_fonts');
     if (!empty($td_top_menu_height['top_menu']['line_height'])) {
         $td_css_compiler->load_setting_raw('top-menu-height', $td_top_menu_height['top_menu']['line_height']);
     }
 
     // read line-height for the block header to align the pulldown
-    $td_header_height = td_util::get_option('td_fonts');
+    $td_header_height = td_options::get_array('td_fonts');
     if (!empty($td_header_height['blocks_title']['line_height'])) {
         $td_css_compiler->load_setting_raw('block-height', $td_header_height['blocks_title']['line_height']);
     }
@@ -1953,7 +2031,11 @@ function td_css_generator() {
         $td_css_compiler->load_setting_raw('select_color', td_util::adjustBrightness($tds_theme_color, 50));
 
         //the sliders text
-        $td_css_compiler->load_setting_raw('slider_text', td_util::hex2rgba($tds_theme_color, 0.7));
+        if ( td_util::is_rgba( $tds_theme_color ) ) {
+            $td_css_compiler->load_setting_raw('slider_text', $tds_theme_color);
+        } else {
+            $td_css_compiler->load_setting_raw('slider_text', td_util::hex2rgba($tds_theme_color, 0.7));
+        }
     }
 
 
@@ -1967,7 +2049,7 @@ function td_css_generator() {
 
 
     /* add block styles */
-    $td_block_styles = td_util::get_option('td_block_styles');
+    $td_block_styles = td_options::get_array('td_block_styles');
 
     //check if we have something set by the user
     if(!empty($td_block_styles)) {

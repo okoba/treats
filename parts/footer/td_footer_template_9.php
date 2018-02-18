@@ -1,4 +1,4 @@
-<div class="td-footer-wrapper td-container-wrap <?php echo td_util::get_option('td_full_footer'); ?>">
+<div class="td-footer-wrapper td-container-wrap td-footer-template-9 <?php echo td_util::get_option('td_full_footer'); ?>">
     <div class="td-container">
 
 	    <div class="td-pb-row">

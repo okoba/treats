@@ -54,7 +54,8 @@ var td_wp_admin_demos = {};
                         return;
                     }
 
-                    tdConfirm.showModal( 'Install demo without content',
+                    // install from the small sidebar list of demos
+                    tdConfirm.showModal( 'Install the full demo',
                         td_wp_admin_demos,
                         function(demoId) {
 
@@ -63,8 +64,9 @@ var td_wp_admin_demos = {};
                             tb_remove();
                         },
                         [jQuery(this).data('demo-id')],
-                        'Are you sure? This will import our predefined settings for the demo (background, template layouts, fonts, colors etc...)<br>' +
-                        'Please backup your settings to be sure that you don\'t lose them by accident.<br><br>'
+                        'Are you sure you want to install the full demo? This will import homepages, sample content with images, backgrounds, template layouts, fonts, colors.<br><br>' +
+                        '<strong>Notice</strong>: The demo can be fully uninstalled and the system will attempt to rollback to your previous state. Any content, menus and attachment created by the demo are removable via the uninstall button.<br><br>' +
+                        '<strong>Please backup your settings</strong> to be sure that you don\'t lose them by accident.'
                     );
                 });
 
@@ -86,8 +88,8 @@ var td_wp_admin_demos = {};
                         tdConfirm.showModal( 'Install demo without content',
                             td_wp_admin_demos,
                             function(demoId) {
-
-                                td_wp_admin_demos._install_full(demoId);
+                                //testtestest
+                                td_wp_admin_demos._install_no_content(demoId);
                                 tb_remove();
                             },
                             [demo_id],

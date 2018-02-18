@@ -70,13 +70,18 @@ td_demo_menus::add_link(array(
 
 
 
-/*  ----------------------------------------------------------------------------
-    background - leave empty if you want to make sure that there is NO background on the demo - td_demo_misc::update_background('');
- */
+// main background > keep empty to make sure no bg is set on demo import
 td_demo_misc::update_background('');
+
+// mobile background
+td_demo_misc::update_background_mobile('td_pic_3');
 
 // footer background
 td_demo_misc::update_background_footer('td_footer_bg');
+
+
+// mobile/search background
+td_demo_misc::update_background_mobile('td_pic_5');
 
 
 /*  ----------------------------------------------------------------------------
@@ -85,7 +90,7 @@ td_demo_misc::update_background_footer('td_footer_bg');
 td_demo_misc::update_logo(array(
     'normal' => 'td_logo_header',
     'retina' => 'td_logo_header@2x',
-    'mobile' => ''
+    'mobile' => 'td_logo_header'
 ));
 
 
@@ -131,6 +136,12 @@ td_demo_misc::add_ad_image('smart_list_7', 'td_travel_smart6_ad');
  */
 //default sidebar
 td_demo_widgets::remove_widgets_from_sidebar('default');
+
+//remove footer widgets > remove existing widgets from footer widgets areas
+td_demo_widgets::remove_widgets_from_sidebar('footer-1');
+td_demo_widgets::remove_widgets_from_sidebar('footer-2');
+td_demo_widgets::remove_widgets_from_sidebar('footer-3');
+
 td_demo_widgets::add_widget_to_sidebar('default', 'td_block_social_counter_widget',
 	array (
 		'custom_title'  => "Stay connected",

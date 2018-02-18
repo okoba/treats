@@ -66,7 +66,7 @@ class td_panel_data_source {
             //translation data source
             case 'td_translate':
                 //get all the translations (they are stored in the td_008 variable)
-                $translations = td_util::get_option('td_translation_map_user');
+                $translations = td_options::get_array('td_translation_map_user');
                 if (!empty($translations[$read_array['option_id']])) {
                     return $translations[$read_array['option_id']];//htmlspecialchars()
                 } else {
@@ -80,7 +80,7 @@ class td_panel_data_source {
             //[ds] => td_ads [option_id] => current_ad_type [item_id] => header - has to become [item_id][option_id]
             case 'td_ads':
                 //get all the ad spots (they are stored in the td_008 variable)
-                $ads = td_util::get_option('td_ads');
+                $ads = td_options::get_array('td_ads');
                 if (!empty($ads[$read_array['item_id']]) and !empty($ads[$read_array['item_id']][$read_array['option_id']])) {
                     return htmlspecialchars($ads[$read_array['item_id']][$read_array['option_id']]);
                 } else {
@@ -91,7 +91,7 @@ class td_panel_data_source {
 
             //social networks
             case 'td_social_networks':
-                $social_array = td_util::get_option('td_social_networks');
+                $social_array = td_options::get_array('td_social_networks');
                 if (!empty($social_array[$read_array['option_id']])) {
                     return $social_array[$read_array['option_id']];
                 } else {
@@ -100,7 +100,7 @@ class td_panel_data_source {
                 break;
 
             case 'td_fonts_user_insert':
-                $fonts_user_inserted = td_util::get_option('td_fonts_user_inserted');
+                $fonts_user_inserted = td_options::get_array('td_fonts_user_inserted');
                 if(!empty($fonts_user_inserted[$read_array['option_id']])) {
                     return $fonts_user_inserted[$read_array['option_id']];
                 }
@@ -108,7 +108,7 @@ class td_panel_data_source {
 
 
             case 'td_fonts':
-                $fonts_user_inserted = td_util::get_option('td_fonts');
+                $fonts_user_inserted = td_options::get_array('td_fonts');
                 if(!empty($fonts_user_inserted[$read_array['item_id']][$read_array['option_id']])) {
                     return $fonts_user_inserted[$read_array['item_id']][$read_array['option_id']];
                 }
@@ -117,7 +117,7 @@ class td_panel_data_source {
 
             case 'td_block_styles':
                 //get the hole block style array
-                $td_block_styles = td_util::get_option('td_block_styles');
+                $td_block_styles = td_options::get_array('td_block_styles');
 
                 if(!empty($td_block_styles) and !empty($td_block_styles[$read_array['item_id']][$read_array['option_id']])) {
                     return $td_block_styles[$read_array['item_id']][$read_array['option_id']];
@@ -419,7 +419,7 @@ class td_panel_data_source {
      * @param $wp_option_array
      */
     private static function update_td_translate($wp_option_array) {
-    	td_options::update('td_translation_map_user', $wp_option_array);
+    	td_options::update_array('td_translation_map_user', $wp_option_array);
         //td_global::$td_options['td_translation_map_user'] = $wp_option_array;
     }
 
@@ -604,7 +604,7 @@ class td_panel_data_source {
             }
         }
 
-        td_options::update('td_social_networks', $save_social_networks);
+        td_options::update_array('td_social_networks', $save_social_networks);
         //td_global::$td_options['td_social_networks'] = $save_social_networks;
     }
 
@@ -702,7 +702,7 @@ class td_panel_data_source {
         }
 
         //check sections from db and add them to the saving array if ar not set to empty by the user
-        $font_sections_from_db = td_util::get_option('td_fonts');//get the fonts from db
+        $font_sections_from_db = td_options::get_array('td_fonts');//get the fonts from db
 
         foreach (td_global::$typography_settings_list as $panel_section => $font_settings_array) {
             foreach ($font_settings_array as $font_setting_id => $font_setting_name) {
@@ -728,7 +728,7 @@ class td_panel_data_source {
 
 
         //add the user font settings to the option string that going to the database
-	    td_options::update('td_fonts', $td_fonts_save);
+	    td_options::update_array('td_fonts', $td_fonts_save);
 
     }
 

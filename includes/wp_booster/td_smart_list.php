@@ -696,7 +696,7 @@ class td_tokenizer {
      * @return mixed
      */
     private function extract_description_from_first_image($token) {
-        $matches = '';
+        $matches = array();
         $buffy = '';
 
 
@@ -729,7 +729,7 @@ class td_tokenizer {
         //2. no match found
         if ($buffy == '') {
             //search for the FIRST img if we didn't find any links in the block of text
-            $matches = '';
+            $matches = array();
             preg_match('/<img.*\/>/U', $token, $matches); //extract first image
             if (!empty($matches[0])) {
                 // we need the extra str_replace because the $matches[0] is user entered in tinymce

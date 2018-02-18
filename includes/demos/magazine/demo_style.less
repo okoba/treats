@@ -2,9 +2,17 @@
 
 /* Magazine demo */
 .td-magazine {
+  
   /* Layout */
   &.td-boxed-layout #td-outer-wrap {
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.12);
+    /* responsive on desktop */
+    @media (min-width: 1180px) {
+      width: 1164px;
+      margin: 0 auto;
+      -webkit-box-shadow: 0 0 5px 0 rgba(0,0,0,0.12);
+      -moz-box-shadow: 0 0 5px 0 rgba(0,0,0,0.12);
+      box-shadow: 0 0 5px 0 rgba(0,0,0,0.12);
+    }
   }
 
   /* Menu */
@@ -100,7 +108,6 @@
   .widgettitle {
     padding-left: 0 !important;
     background-color: transparent !important;
-    padding-bottom: 8px !important;
   }
 
   // block filter
@@ -130,120 +137,6 @@
       display: none;
     }
   }
-
-  // Tab
-  .vc_tta-container .vc_tta-color-grey.vc_tta-tabs-position-top.vc_tta-style-classic .vc_tta-tabs-container {
-    margin-bottom: 17px !important;
-    border: none;
-
-    .vc_tta-tab {
-      margin: 0 11px;
-
-      > a {
-        background-color: transparent !important;
-      }
-    }
-    .vc_tta-tabs-list {
-      text-align: center;
-    }
-    .vc_tta-tab.vc_active > a,
-    .vc_tta-tab:hover > a {
-      background-color: transparent;
-      color: #009688;
-    }
-  }
-  .vc_tta.vc_general .vc_tta-icon {
-    font-size: 1em;
-    top: -2px;
-    position: relative;
-  }
-  .vc_tta-panels-container {
-    margin-bottom: 48px;
-  }
-
-  // custom color for tab
-  .td-tab-color {
-    .td-grid-style-4 .entry-title {
-      background-color: rgba(0, 0, 0, 0.4);
-    }
-
-    // tab items color
-    // 1 - fashion
-    .vc_tta-tabs-list {
-      li:nth-child(1).vc_active > a,
-      li:nth-child(1):hover > a {
-        color: #e53935 !important;
-      }
-    }
-    .vc_tta-panels {
-      .vc_tta-panel:nth-child(1) {
-        .td-grid-style-4 .td-post-category {
-          background-color: #e53935 !important;
-        }
-      }
-    }
-
-    // 2 - sport
-    .vc_tta-tabs-list {
-      li:nth-child(2).vc_active > a,
-      li:nth-child(2):hover > a {
-        color: #66bb6a !important;
-      }
-    }
-    .vc_tta-panels {
-      .vc_tta-panel:nth-child(2) {
-        .td-grid-style-4 .td-post-category {
-          background-color: #66bb6a !important;
-        }
-      }
-    }
-
-    // 3 - music
-    .vc_tta-tabs-list {
-      li:nth-child(3).vc_active > a,
-      li:nth-child(3):hover > a {
-        color: #29B6F6 !important;
-      }
-    }
-    .vc_tta-panels {
-      .vc_tta-panel:nth-child(3) {
-        .td-grid-style-4 .td-post-category {
-          background-color: #29B6F6 !important;
-        }
-      }
-    }
-
-    // 4 - world
-    .vc_tta-tabs-list {
-      li:nth-child(4).vc_active > a,
-      li:nth-child(4):hover > a {
-        color: #7F8FA9 !important;
-      }
-    }
-    .vc_tta-panels {
-      .vc_tta-panel:nth-child(4) {
-        .td-grid-style-4 .td-post-category {
-          background-color: #7F8FA9 !important;
-        }
-      }
-    }
-
-    // 5 - lifestyle
-    .vc_tta-tabs-list {
-      li:nth-child(5).vc_active > a,
-      li:nth-child(5):hover > a {
-        color: #FDD835 !important;
-      }
-    }
-    .vc_tta-panels {
-      .vc_tta-panel:nth-child(5) {
-        .td-grid-style-4 .td-post-category {
-          background-color: #FDD835 !important;
-        }
-      }
-    }
-  }
-
   // Post template
   .td_block_template_1 .td-related-title {
     a {

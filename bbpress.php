@@ -13,7 +13,7 @@ $loop_sidebar_position = td_util::get_option('tds_' . $template_id . '_sidebar_p
 
 
 //read the custom single post settings - this setting overids all of them
-$td_page = get_post_meta($post->ID, 'td_page', true);
+$td_page = td_util::get_post_meta_array($post->ID, 'td_page');
 if (!empty($td_page['td_sidebar_position'])) {
 	$loop_sidebar_position = $td_page['td_sidebar_position'];
 }

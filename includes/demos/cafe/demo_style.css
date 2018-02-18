@@ -38,6 +38,10 @@
 .td-cafe .td-header-style-10 .td_mega_menu_sub_cats .block-mega-child-cats a {
   color: #6d5348;
 }
+.td-cafe .vc_single_image a {
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
 .td-cafe .td-post-category:hover {
   background-color: #000;
   opacity: 1;

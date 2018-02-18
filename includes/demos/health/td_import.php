@@ -26,10 +26,11 @@ td_demo_menus::add_link(array(
 ));
 
 
-/*  ----------------------------------------------------------------------------
-    background - leave empty if you want to make sure that there is NO background on the demo - td_demo_misc::update_background('');
- */
-td_demo_misc::update_background('');
+// mobile bg
+td_demo_misc::update_background_mobile('td_pic_10');
+
+// login bg
+td_demo_misc::update_background_login('td_pic_10');
 
 
 
@@ -40,13 +41,6 @@ td_demo_misc::update_logo(array(
     'normal' => 'td_logo_header',
     'retina' => '',
     'mobile' => ''
-));
-
-
-//footer
-td_demo_misc::update_footer_logo(array(
-    'normal' => 'td_logo_footer',
-    'retina' => ''
 ));
 
 
@@ -82,6 +76,12 @@ td_demo_misc::add_ad_image('sidebar', 'td_health_sidebar_ad');
  */
 //default sidebar
 td_demo_widgets::remove_widgets_from_sidebar('default');
+
+//remove footer widgets > remove existing widgets from footer widgets areas
+td_demo_widgets::remove_widgets_from_sidebar('footer-1');
+td_demo_widgets::remove_widgets_from_sidebar('footer-2');
+td_demo_widgets::remove_widgets_from_sidebar('footer-3');
+
 td_demo_widgets::add_widget_to_sidebar('default', 'td_block_ad_box_widget',
     array (
         'spot_title' => '- Advertisement -',
@@ -443,25 +443,25 @@ td_demo_content::add_post(array(
     'title' => "New Genes Linked to Alzheimer’s",
     'file' => td_global::$get_template_directory . '/includes/demos/health/pages/post_default.txt',
     'categories_id_array' => array($demo_cat_10_id),
-    'featured_image_td_id' => 'td_pic_9'
+    'featured_image_td_id' => 'td_pic_4'
 ));
 td_demo_content::add_post(array(
     'title' => "The Apple Watch Might Make Your Fitness Tracker Obsolete",
     'file' => td_global::$get_template_directory . '/includes/demos/health/pages/post_default.txt',
     'categories_id_array' => array($demo_cat_9_id),
-    'featured_image_td_id' => 'td_pic_10'
+    'featured_image_td_id' => 'td_pic_3'
 ));
 td_demo_content::add_post(array(
     'title' => 'The Ultimate Upper-Body Workout',
     'file' => td_global::$get_template_directory . '/includes/demos/health/pages/post_default.txt',
     'categories_id_array' => array($demo_cat_2_id),
-    'featured_image_td_id' => 'td_pic_5'
+    'featured_image_td_id' => 'td_pic_2'
 ));
 td_demo_content::add_post(array(
     'title' => "12 Classic Pilates Moves Featured",
     'file' => td_global::$get_template_directory . '/includes/demos/health/pages/post_default.txt',
     'categories_id_array' => array($demo_cat_4_id),
-    'featured_image_td_id' => 'td_pic_6'
+    'featured_image_td_id' => 'td_pic_1'
 ));
 
 //  ----------------------------------------------------------------------------
@@ -475,25 +475,25 @@ td_demo_content::add_post(array(
     'title' => "What Dudes Don't Ask Their Docs ",
     'file' => td_global::$get_template_directory . '/includes/demos/health/pages/post_default.txt',
     'categories_id_array' => array($demo_cat_9_id),
-    'featured_image_td_id' => 'td_pic_8'
+    'featured_image_td_id' => 'td_pic_4'
 ));
 td_demo_content::add_post(array(
     'title' => 'Look Great at Any Age',
     'file' => td_global::$get_template_directory . '/includes/demos/health/pages/post_default.txt',
     'categories_id_array' => array($demo_cat_10_id),
-    'featured_image_td_id' => 'td_pic_9'
+    'featured_image_td_id' => 'td_pic_3'
 ));
 td_demo_content::add_post(array(
     'title' => "The Seizure Stopper",
     'file' => td_global::$get_template_directory . '/includes/demos/health/pages/post_default.txt',
     'categories_id_array' => array($demo_cat_6_id),
-    'featured_image_td_id' => 'td_pic_10'
+    'featured_image_td_id' => 'td_pic_2'
 ));
 td_demo_content::add_post(array(
     'title' => "There's 1 Big Thing Fitness Trackers Haven't Mastered",
     'file' => td_global::$get_template_directory . '/includes/demos/health/pages/post_default.txt',
     'categories_id_array' => array($demo_cat_4_id),
-    'featured_image_td_id' => 'td_pic_5'
+    'featured_image_td_id' => 'td_pic_1'
 ));
 
 //  ----------------------------------------------------------------------------
@@ -519,13 +519,13 @@ td_demo_content::add_post(array(
     'title' => "Burn Calories at the Beach",
     'file' => td_global::$get_template_directory . '/includes/demos/health/pages/post_default.txt',
     'categories_id_array' => array($demo_cat_3_id),
-    'featured_image_td_id' => 'td_pic_9'
+    'featured_image_td_id' => 'td_pic_2'
 ));
 td_demo_content::add_post(array(
     'title' => "Super Foods with a Twist",
     'file' => td_global::$get_template_directory . '/includes/demos/health/pages/post_default.txt',
     'categories_id_array' => array($demo_cat_4_id),
-    'featured_image_td_id' => 'td_pic_10'
+    'featured_image_td_id' => 'td_pic_1'
 ));
 
 //  ----------------------------------------------------------------------------
@@ -539,7 +539,7 @@ td_demo_content::add_post(array(
     'title' => "The True Meaning of Paleo",
     'file' => td_global::$get_template_directory . '/includes/demos/health/pages/post_default.txt',
     'categories_id_array' => array($demo_cat_6_id),
-    'featured_image_td_id' => 'td_pic_6'
+    'featured_image_td_id' => 'td_pic_3'
 ));
 
 td_demo_content::add_post(array(
@@ -552,7 +552,7 @@ td_demo_content::add_post(array(
     'title' => 'These 10 Fitness Gadgets Will Take Your Workouts To The Next Level',
     'file' => td_global::$get_template_directory . '/includes/demos/health/pages/post_default.txt',
     'categories_id_array' => array($demo_cat_7_id),
-    'featured_image_td_id' => 'td_pic_8'
+    'featured_image_td_id' => 'td_pic_4'
 ));
 
 //  ----------------------------------------------------------------------------
@@ -566,7 +566,7 @@ td_demo_content::add_post(array(
 	'title' => "The Easy Stretch You Should Do for a Better Workout",
 	'file' => td_global::$get_template_directory . '/includes/demos/health/pages/post_default.txt',
 	'categories_id_array' => array($demo_cat_9_id),
-	'featured_image_td_id' => 'td_pic_10'
+	'featured_image_td_id' => 'td_pic_1'
 ));
 
 td_demo_content::add_post(array(
@@ -579,32 +579,32 @@ td_demo_content::add_post(array(
 	'title' => 'Get Motivated: The Benefits of Outdoor Exercise',
 	'file' => td_global::$get_template_directory . '/includes/demos/health/pages/post_default.txt',
 	'categories_id_array' => array($demo_cat_7_id),
-	'featured_image_td_id' => 'td_pic_6'
+	'featured_image_td_id' => 'td_pic_3'
 ));
 //-------------------------------------------------------------------------------
 td_demo_content::add_post(array(
     'title' => '10 Ways to Get More Fruits and Veggies in Your Diet',
     'file' => td_global::$get_template_directory . '/includes/demos/health/pages/post_default.txt',
     'categories_id_array' => array($demo_cat_10_id),
-    'featured_image_td_id' => 'td_pic_7'
+    'featured_image_td_id' => 'td_pic_2'
 ));
 td_demo_content::add_post(array(
     'title' => 'The Heart-Saving Hormone',
     'file' => td_global::$get_template_directory . '/includes/demos/health/pages/post_default.txt',
     'categories_id_array' => array($demo_cat_2_id),
-    'featured_image_td_id' => 'td_pic_8'
+    'featured_image_td_id' => 'td_pic_3'
 ));
 td_demo_content::add_post(array(
     'title' => 'This Service Could Change The Way We Buy Health Trackers',
     'file' => td_global::$get_template_directory . '/includes/demos/health/pages/post_default.txt',
     'categories_id_array' => array($demo_cat_6_id),
-    'featured_image_td_id' => 'td_pic_9'
+    'featured_image_td_id' => 'td_pic_10'
 ));
 td_demo_content::add_post(array(
     'title' => '9 Things You Need to Know About Muscle Soreness',
     'file' => td_global::$get_template_directory . '/includes/demos/health/pages/post_default.txt',
     'categories_id_array' => array($demo_cat_7_id),
-    'featured_image_td_id' => 'td_pic_10'
+    'featured_image_td_id' => 'td_pic_4'
 ));
 td_demo_content::add_post(array(
     'title' => '5 Yoga Poses for Killer Abs',

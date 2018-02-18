@@ -16,6 +16,10 @@ td-md-is-safari
     IE - misc
 */
 .ie8, .ie9, .ie10, .ie11 {
+  a:active,
+  a:hover {
+    outline: invert none medium;
+  }
 
   //html moved 1 px to left fix for desktop affix menu + boxed
   @media (min-width: @responsive_l_tablet_max) {
@@ -863,15 +867,6 @@ td-md-is-safari
     }
   }
 
-  //block title
-  .block-title {
-    span,
-    a,
-    label {
-      line-height: 18px;
-      padding: 6px 12px 4px;
-    }
-  }
   // block title pulldown
   .td-pulldown-syle-default,
   .td_block_template_11 {
@@ -984,6 +979,13 @@ td-md-is-safari
     .block-title label {
       /* responsive portrait phone */
       @media (max-width: @responsive_p_phone_max) {
+        padding-right: 0;
+        padding-left: 0;
+      }
+    }
+
+    .td_block_template_1 {
+      .block-title * {
         padding-right: 0;
         padding-left: 0;
       }

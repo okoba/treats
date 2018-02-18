@@ -107,7 +107,7 @@ class td_global {
 		if (td_global::$current_template === 'page-title-sidebar') {
 			global $post;
 
-			$td_page = get_post_meta($post->ID, 'td_page', true);
+			$td_page = td_util::get_post_meta_array($post->ID, 'td_page');
 
 			//check for this page sidebar position
 			if (empty($td_page['td_sidebar_position'])) {
@@ -533,7 +533,7 @@ class td_global {
          */
         if (is_single()) {
             //read the post setting
-            $td_post_theme_settings = get_post_meta(self::$post->ID, 'td_post_theme_settings', true);
+            $td_post_theme_settings = td_util::get_post_meta_array(self::$post->ID, 'td_post_theme_settings');
             if (!empty($td_post_theme_settings['td_primary_cat'])) {
                 self::$primary_category = $td_post_theme_settings['td_primary_cat'];
                 return;

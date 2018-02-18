@@ -15,8 +15,8 @@
 
 //if it's singular read the post/page sidebar settings
 if (is_singular()) {
-    $td_post_theme_settings = get_post_meta($post->ID, 'td_post_theme_settings', true);
-    $td_page = get_post_meta($post->ID, 'td_page', true);
+    $td_post_theme_settings = td_util::get_post_meta_array($post->ID, 'td_post_theme_settings');
+    $td_page = td_util::get_post_meta_array($post->ID, 'td_page');
 }
 
 if (!empty($td_post_theme_settings['td_sidebar'])) {

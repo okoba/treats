@@ -13,6 +13,14 @@ class td_css_compiler {
     function __construct($raw_css) {
         $this->raw_css = $raw_css;
 
+        /**
+         * @since 27.3.2017 Also load the css from the fake api. Plugins can put custom raw css
+         */
+
+
+        $this->raw_css .= td_api_css_generator::get_all();
+
+
 //	    print_r(debug_backtrace());
 //	    die;
     }

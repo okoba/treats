@@ -30,37 +30,37 @@
         },
 
 
-        {text: 'Button', value: 6, classes: 'td_tinymce_dropdown_title'},
-        {
-            text: 'Default', value: 7, onclick: function () {
-            tinymce.activeEditor.execCommand('mceInsertContent', false, '[button color="" size="" type="" target="" link=""]' + tinyMCE.activeEditor.selection.getContent() + '[/button]');
-        }
-        },
-        {
-            text: 'Square', value: 8, onclick: function () {
-            tinymce.activeEditor.execCommand('mceInsertContent', false, '[button color="" size="" type="square" target="" link=""]' + tinyMCE.activeEditor.selection.getContent() + '[/button]');
-        }
-        },
-        {
-            text: 'Round', value: 9, onclick: function () {
-            tinymce.activeEditor.execCommand('mceInsertContent', false, '[button color="" size="" type="round" target="" link=""]' + tinyMCE.activeEditor.selection.getContent() + '[/button]');
-        }
-        },
-        {
-            text: 'Outlined', value: 10, onclick: function () {
-            tinymce.activeEditor.execCommand('mceInsertContent', false, '[button color="" size="" type="outlined" target="" link=""]' + tinyMCE.activeEditor.selection.getContent() + '[/button]');
-        }
-        },
-        {
-            text: '3d', value: 11, onclick: function () {
-            tinymce.activeEditor.execCommand('mceInsertContent', false, '[button color="" size="" type="3d" target="" link=""]' + tinyMCE.activeEditor.selection.getContent() + '[/button]');
-        }
-        },
-        {
-            text: 'Square outlined', value: 12, onclick: function () {
-            tinymce.activeEditor.execCommand('mceInsertContent', false, '[button color="" size="" type="square_outlined" target="" link=""]' + tinyMCE.activeEditor.selection.getContent() + '[/button]');
-        }
-        }
+        // {text: 'Button', value: 6, classes: 'td_tinymce_dropdown_title'},
+        // {
+        //     text: 'Default', value: 7, onclick: function () {
+        //     tinymce.activeEditor.execCommand('mceInsertContent', false, '[button color="" size="" type="" target="" link=""]' + tinyMCE.activeEditor.selection.getContent() + '[/button]');
+        // }
+        // },
+        // {
+        //     text: 'Square', value: 8, onclick: function () {
+        //     tinymce.activeEditor.execCommand('mceInsertContent', false, '[button color="" size="" type="square" target="" link=""]' + tinyMCE.activeEditor.selection.getContent() + '[/button]');
+        // }
+        // },
+        // {
+        //     text: 'Round', value: 9, onclick: function () {
+        //     tinymce.activeEditor.execCommand('mceInsertContent', false, '[button color="" size="" type="round" target="" link=""]' + tinyMCE.activeEditor.selection.getContent() + '[/button]');
+        // }
+        // },
+        // {
+        //     text: 'Outlined', value: 10, onclick: function () {
+        //     tinymce.activeEditor.execCommand('mceInsertContent', false, '[button color="" size="" type="outlined" target="" link=""]' + tinyMCE.activeEditor.selection.getContent() + '[/button]');
+        // }
+        // },
+        // {
+        //     text: '3d', value: 11, onclick: function () {
+        //     tinymce.activeEditor.execCommand('mceInsertContent', false, '[button color="" size="" type="3d" target="" link=""]' + tinyMCE.activeEditor.selection.getContent() + '[/button]');
+        // }
+        // },
+        // {
+        //     text: 'Square outlined', value: 12, onclick: function () {
+        //     tinymce.activeEditor.execCommand('mceInsertContent', false, '[button color="" size="" type="square_outlined" target="" link=""]' + tinyMCE.activeEditor.selection.getContent() + '[/button]');
+        // }
+        // }
 
         ];
 

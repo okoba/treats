@@ -553,16 +553,16 @@ jQuery(window).ready(function() {
             });
 
             //wordpress embedded
-            jQuery( document ).find( '.wp-video-shortcode' ).each(function() {
-                var tdVideo = jQuery(this),
-                    tdVideoWidth = tdVideo.width() + 3;
-                jQuery(this).parent().css('height', tdVideoWidth * 0.56, 'important');
-                //td_video.css('height', td_video_width * 0.6, 'important')
-                tdVideo.css({
-                    'width': '100% !important',
-                    'height': '100% !important'
-                });
-            });
+            //jQuery( document ).find( '.wp-video-shortcode' ).each(function() {
+            //    var tdVideo = jQuery(this),
+            //        tdVideoWidth = tdVideo.width() + 3;
+            //    jQuery(this).parent().css('height', tdVideoWidth * 0.56, 'important');
+            //    //td_video.css('height', td_video_width * 0.6, 'important')
+            //    tdVideo.css({
+            //        'width': '100% !important',
+            //        'height': '100% !important'
+            //    });
+            //});
         },
 
 

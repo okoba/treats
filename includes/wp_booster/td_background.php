@@ -94,7 +94,7 @@ class td_background {
 
 
             // read the per post single_template
-            $post_meta_values = get_post_meta($post->ID, 'td_post_theme_settings', true);
+            $post_meta_values = td_util::get_post_meta_array($post->ID, 'td_post_theme_settings');
 
             // if we don't have any single_template set on this post, try to laod the default global setting
             if(empty($post_meta_values['td_post_template'])) {

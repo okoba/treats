@@ -39,7 +39,7 @@ class td_unique_posts {
 
 	        }
 
-	        $td_unique_articles = get_post_meta($page_id, $meta_key, true);
+	        $td_unique_articles = td_util::get_post_meta_array($page_id, $meta_key);
 	        if (!empty($td_unique_articles['td_unique_articles'])) {
 		        self::$keep_rendered_posts_ids = true; //for new module hook
 		        self::$unique_articles_enabled = true; //for datasource

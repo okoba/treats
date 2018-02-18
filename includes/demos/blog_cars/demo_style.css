@@ -62,11 +62,12 @@
     padding-top: 10px;
   }
 }
-.td-blog-cars .wpb_revslider_element {
-  padding-bottom: 13px;
-}
 .td-blog-cars .td-trending-now-wrapper:hover .td-trending-now-title {
   background-color: transparent;
+}
+.td-blog-cars .td_block_trending_now {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 .td-blog-cars .td-trending-now-title {
   background-color: transparent;

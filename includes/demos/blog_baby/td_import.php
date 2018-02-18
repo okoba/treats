@@ -40,8 +40,7 @@ td_demo_misc::update_background_mobile('td_pic_9');
 */
 td_demo_misc::update_logo(array(
     'normal' => 'td_logo_header',
-    'retina' => 'td_logo_header',
-    'mobile' => 'td_logo_mobile'
+    'retina' => 'td_logo_header'
 ));
 
 //footer
@@ -83,13 +82,25 @@ td_demo_misc::add_ad_image('sidebar', 'td_blog_baby_sidebar_ad');
 //default sidebar
 td_demo_widgets::remove_widgets_from_sidebar('default');
 
+//remove footer widgets > remove existing widgets from footer widgets areas
+td_demo_widgets::remove_widgets_from_sidebar('footer-1');
+td_demo_widgets::remove_widgets_from_sidebar('footer-2');
+td_demo_widgets::remove_widgets_from_sidebar('footer-3');
+
+td_demo_widgets::add_widget_to_sidebar('default', 'td_block_author_widget',
+    array (
+        'custom_title'  => "ABOUT ME",
+        'author_id' => '1'
+    )
+);
+
 td_demo_widgets::add_widget_to_sidebar('default', 'td_block_social_counter_widget',
     array (
         'custom_title'  => "",
         'facebook'      => "tagdiv",
         'instagram'     => "tagDiv",
         'youtube'       => "tagDiv",
-        'twitter'       => "tagDiv",
+        'twitter'       => "tagDivOfficial",
         'style'         => "style9 td-social-boxed td-social-colored"
     )
 );

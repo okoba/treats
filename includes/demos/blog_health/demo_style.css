@@ -9,47 +9,44 @@ Health blog demo
 */
 .td-blog-health {
   /*
-header--------------------------------
-*/
+  body--------------------------------
+  */
   /*
-body--------------------------------
-*/
+  Sidebar--------------------------------
+  */
   /*
-Sidebar--------------------------------
-*/
-  /*
-Category--------------------------------
-*/
+  Category--------------------------------
+  */
 }
-.td-blog-health .td-header-style-1 .sf-menu > li > a:hover,
-.td-blog-health .td-header-style-1 .sf-menu > .sfHover > a,
-.td-blog-health .td-header-style-1 .sf-menu > .current-menu-item > a,
-.td-blog-health .td-header-style-1 .sf-menu > .current-menu-ancestor > a,
-.td-blog-health .td-header-style-1 .sf-menu > .current-category-ancestor > a {
-  color: #d36ee5;
+.td-blog-health.td-boxed-layout .td-main-content-wrap {
+  -webkit-box-shadow: 0 0 200px 0 rgba(0, 0, 0, 0.03);
+  -moz-box-shadow: 0 0 200px 0 rgba(0, 0, 0, 0.03);
+  box-shadow: 0 0 200px 0 rgba(0, 0, 0, 0.03);
 }
-.td-blog-health .td-header-style-1 .sf-menu > li > a:after {
+.td-blog-health.td-boxed-layout .td-main-content-wrap.td-footer-instagram-container {
   background-color: transparent;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  margin-top: 48px;
 }
-.td-blog-health .td-header-style-1 .td-header-menu-wrap {
-  border-bottom-width: 2px;
-  border-bottom-style: solid ;
-  border-bottom-color: #d36ee5;
+.td-blog-health.td-boxed-layout .td-main-content-wrap.td-main-page-wrap {
+  padding-bottom: 0;
 }
-.td-blog-health .td-header-style-1 .td-header-gradient:before {
-  display: none;
-}
-.td-blog-health.td-boxed-layout #td-outer-wrap {
-  box-shadow: 0 0 15px #ddd;
-}
-.td-blog-health .td_block_big_grid_9.td-grid-style-4 .td-module-meta-info {
-  display: none;
-}
-.td-blog-health .td_block_trending_now .entry-title a {
-  font-family: 'Roboto', sans-serif;
+.td-blog-health .td-header-style-11 .td-header-sp-logo {
+  margin: -6px 0;
 }
 .td-blog-health .td_block_trending_now .td-trending-now-title {
   font-size: 12px;
+}
+@media (min-width: 1018px) {
+  .td-blog-health .td_block_big_grid_fl_4 .td-big-grid-post .entry-title {
+    font-size: 20px;
+    line-height: 24px;
+  }
+}
+.td-blog-health .td_module_mx21 .td-module-meta-info {
+  display: none;
 }
 .td-blog-health .td_module_17 .entry-title {
   font-size: 26px;

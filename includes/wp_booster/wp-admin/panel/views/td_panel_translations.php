@@ -95,9 +95,9 @@
                     // initialize data parameters adding selected language, td_cake_status, theme name, theme version
                     var data = {
                         language_code: selected_language_code,
-                        td_product_name: '\'' + td_theme_name + '\'',
-                        td_product_version: '\'' + td_theme_version + '\'',
-                        td_cake_status: '\'' + td_cake_status + '\''
+                        td_product_name: td_theme_name,
+                        td_product_version: td_theme_version,
+                        td_cake_status: td_cake_status
                     };
 
                     // create data parameters
@@ -105,18 +105,28 @@
                         data[this.name] = this.value;
                     });
 
+                    // ajax action - we included it in the data
+                    // we send the entire POST to the api server and we cannot include data in another variable
+                    data['action'] = 'td_ajax_share_translation';
+
                     jQuery.ajax({
-                        crossDomain: true,
-
-                        // jsonp parameter is used for crossdomain requests compatibility. It is now used in send_translation, because there's no response.
-                        dataType: 'jsonp',
-                        // jsonpCallback parameter is used for crossdomain requests compatibility. It is now used in send_translation, because there's no response.
-                        jsonpCallback: 'jsonpCallback',
-
-                        url: 'http://api.tagdiv.com/user_translations/add_full_user_translation',
-
+                        type: 'POST',
+                        url: td_ajax_url,
                         data: data
                     });
+
+//                    jQuery.ajax({
+//                        crossDomain: true,
+//
+//                        // jsonp parameter is used for crossdomain requests compatibility. It is now used in send_translation, because there's no response.
+//                        dataType: 'jsonp',
+//                        // jsonpCallback parameter is used for crossdomain requests compatibility. It is now used in send_translation, because there's no response.
+//                        jsonpCallback: 'jsonpCallback',
+//
+//                        url: 'http://api.tagdiv.com/user_translations/add_full_user_translation',
+//
+//                        data: data
+//                    });
 
                     jQuery("#thanks_send_translation").show();
 
@@ -175,45 +185,80 @@
                     // we clear the translation for english language, english being the default translation
 		            if (selected_language_code == 'en') {
 		                td_translation.clear_translation();
+			            tb_remove();
 		                return;
 		            }
 
 		            if (selected_language_code != undefined && selected_language_code != '') {
-		                jQuery.ajax({
-		                    crossDomain: true,
+                        jQuery.ajax({
+                            type: 'POST',
+                            url: td_ajax_url,
+                            data: {
+                                action: 'td_ajax_get_translation',
+                                language_code: selected_language_code
+                            },
+                            success: function(data, textStatus, XMLHttpRequest){
+                                // show the content panel updated with response values
+                                show_content_panel(
 
-		                    // jsonp parameter is used for crossdomain requests. It's used for response type. It must be jsonp and not json.
-		                    dataType: 'jsonp',
-		                    // jsonpCallback parameter is used for crossdomain requests. It's used for response type. (must be wrapped in 'jsonpCallback')
-		                    jsonpCallback: 'jsonpCallback',
+                                    // this is the jquery object to be loaded
+                                    jQuery('#panel_translation_custom_id'),
 
-		                    url: 'http://api.tagdiv.com/user_translations/get_translation',
+                                    // this parameter keep the open position
+                                    true,
 
-		                    data: {
-		                        'language_code': selected_language_code
-		                    },
-		                    complete: function (jqXHR, textStatus) {
-		                        if (textStatus == 'success') {
-		                            if (jqXHR.responseJSON.constructor === Object) {
+                                    // this is callback function. It completes the fields
+                                    function () {
+                                        td_translation.completeTranslation(JSON.parse(data));
+                                    }
+                                );
 
-		                                // show the content panel updated with response values
-		                                show_content_panel(
 
-		                                    // this is the jquery object to be loaded
-		                                    jQuery('#panel_translation_custom_id'),
+                            },
+                            error: function(MLHttpRequest, textStatus, errorThrown){
+                                //console.log(errorThrown);
+                            }
+                        });
 
-		                                    // this parameter keep the open position
-		                                    true,
 
-		                                    // this is callback function. It completes the fields
-		                                    function () {
-		                                        td_translation.completeTranslation(jqXHR.responseJSON)
-		                                    }
-		                                );
-		                            }
-		                        }
-		                    }
-		                });
+
+//		                jQuery.ajax({
+//		                    crossDomain: true,
+//
+//		                    // jsonp parameter is used for crossdomain requests. It's used for response type. It must be jsonp and not json.
+//		                    dataType: 'jsonp',
+//		                    // jsonpCallback parameter is used for crossdomain requests. It's used for response type. (must be wrapped in 'jsonpCallback')
+//		                    jsonpCallback: 'jsonpCallback',
+//
+//		                    url: 'http://api.tagdiv.com/user_translations/get_translation',
+//
+//		                    data: {
+//		                        'language_code': selected_language_code
+//		                    },
+//		                    complete: function (jqXHR, textStatus) {
+//		                        if (textStatus == 'success') {
+//		                            if (jqXHR.responseJSON.constructor === Object) {
+//
+//		                                // show the content panel updated with response values
+//		                                show_content_panel(
+//
+//		                                    // this is the jquery object to be loaded
+//		                                    jQuery('#panel_translation_custom_id'),
+//
+//		                                    // this parameter keep the open position
+//		                                    true,
+//
+//		                                    // this is callback function. It completes the fields
+//		                                    function () {
+//		                                        td_translation.completeTranslation(jqXHR.responseJSON)
+//		                                    }
+//		                                );
+//		                            }
+//		                        }
+//		                    }
+//		                });
+
+
 		            }
 
                     tb_remove();

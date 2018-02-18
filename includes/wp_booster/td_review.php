@@ -83,8 +83,11 @@ class td_review {
     }
 
 
-
-    // converts the rating to 0-5 to be used with stars
+    /**
+     * converts the rating to 0-5 to be used with stars
+     * @param $td_review
+     * @return float
+     */
     private static function calculate_total_key_value($td_review) {
         if (!empty($td_review['has_review'])) {
             switch ($td_review['has_review']) {
@@ -309,7 +312,7 @@ class td_review {
 
     static function on_save_post_update_review($post_id) {
         //$td_review = get_post_meta($post_id, 'td_review', true);
-	    $td_review = get_post_meta($post_id, 'td_post_theme_settings', true);
+	    $td_review = td_util::get_post_meta_array($post_id, 'td_post_theme_settings');
         if (self::has_review($td_review)) {
             update_post_meta($post_id, 'td_review_key', self::calculate_total_key_value($td_review));
             /*

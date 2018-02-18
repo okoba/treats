@@ -36,7 +36,7 @@ class td_remote_http {
 	 *          - bool FALSE: if the request failed
 	 */
 	static function get_page($url, $caller_id = '') {
-		$td_remote_http = td_util::get_option('td_remote_http');
+		$td_remote_http = td_options::get_array('td_remote_http');
 
 		// see if we have a manual channel
 		if (!empty($td_remote_http['manual_channel'])) {
@@ -59,7 +59,7 @@ class td_remote_http {
 					if ($test_result !== false) {
 
 						$td_remote_http['test_status'] = $channel_that_passed;
-						td_util::update_option('td_remote_http', $td_remote_http); // save new status
+						td_options::update_array('td_remote_http', $td_remote_http); // save new status
 						td_log::log_info(__FILE__, __FUNCTION__, 'all_fail -> time passed -> Test passed with channel: ' . $channel_that_passed, $url);
 						return $test_result;
 
@@ -67,7 +67,7 @@ class td_remote_http {
 
 						// all tests failed
 						$td_remote_http['test_status'] = 'all_fail';
-						td_util::update_option('td_remote_http', $td_remote_http); // save new status
+						td_options::update_array('td_remote_http', $td_remote_http); // save new status
 						td_log::log_info(__FILE__, __FUNCTION__, 'all_fail -> time passed -> all_fail again', $url);
 						return false;
 
@@ -93,13 +93,13 @@ class td_remote_http {
 			$td_remote_http['test_time'] = time();
 			if ($test_result !== false) {
 				$td_remote_http['test_status'] = $channel_that_passed;
-				td_util::update_option('td_remote_http', $td_remote_http); //save
+				td_options::update_array('td_remote_http', $td_remote_http); //save
 				td_log::log_info(__FILE__, __FUNCTION__, 'first run -> test passed with channel: ' . $channel_that_passed, $url);
 				return $test_result;
 			} else {
 				// all tests failed
 				$td_remote_http['test_status'] = 'all_fail';
-				td_util::update_option('td_remote_http', $td_remote_http); //save
+				td_options::update_array('td_remote_http', $td_remote_http); //save
 				td_log::log_info(__FILE__, __FUNCTION__, 'first run -> all failed', $url);
 				return false;
 			}
@@ -247,8 +247,8 @@ class td_remote_http {
 		curl_setopt ($ch,  CURLOPT_MAXREDIRS, 3); //max redirects
 		curl_setopt ($ch,  CURLOPT_ENCODING, ''); //folosim compresia - daca e empty trimite toate formele de compresie suportate
 		//timeout? - 300 sec = 5 min
-		curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, self::http_request_timeout); //Fail if a web server doesn’t respond to a connection within a time limit (seconds).
-		curl_setopt($ch, CURLOPT_TIMEOUT, self::http_request_timeout); //Fail if a web server doesn’t return the web page within a time limit (seconds).
+		curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, self::http_request_timeout); //Fail if a web server doesnï¿½t respond to a connection within a time limit (seconds).
+		curl_setopt($ch, CURLOPT_TIMEOUT, self::http_request_timeout); //Fail if a web server doesnï¿½t return the web page within a time limit (seconds).
 		curl_setopt($ch, CURLOPT_HEADER, false);
 		// misc
 		curl_setopt($ch,CURLOPT_AUTOREFERER,true); //The referer is a URL for the web page that linked to the requested web page. When following redirects, set this to true and CURL automatically fills in the URL of the page being redirected away from.

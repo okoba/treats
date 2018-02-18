@@ -109,7 +109,10 @@ td_demo_misc::add_ad_image('header', 'td_animals_header_ad');
 
 td_demo_widgets::remove_widgets_from_sidebar('default');
 
-
+//remove footer widgets > remove existing widgets from footer widgets areas
+td_demo_widgets::remove_widgets_from_sidebar('footer-1');
+td_demo_widgets::remove_widgets_from_sidebar('footer-2');
+td_demo_widgets::remove_widgets_from_sidebar('footer-3');
 
 td_demo_widgets::add_widget_to_sidebar('default', 'td_block_9_widget',
     array (

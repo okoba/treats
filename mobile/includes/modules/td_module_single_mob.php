@@ -193,7 +193,7 @@ class td_module_single_mob extends td_module_single_base {
          * @see td_autoload_classes::loading_classes
          */
         //$td_smart_list = get_post_meta($this->post->ID, 'td_smart_list', true);
-        $td_smart_list = get_post_meta($this->post->ID, 'td_post_theme_settings', true);
+        $td_smart_list = td_util::get_post_meta_array($this->post->ID, 'td_post_theme_settings');
         if (!empty($td_smart_list['smart_list_template'])) {
 
             $td_smart_list_class = 'td_smart_list_mob_1';

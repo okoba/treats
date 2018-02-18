@@ -53,7 +53,7 @@ abstract class td_module {
 
         //get the review metadata
         //$this->td_review = get_post_meta($this->post->ID, 'td_review', true); @todo $this->td_review variable name must be replaced and the 'get_quotes_on_blocks', 'get_category' methods also
-	    $this->td_review = get_post_meta($this->post->ID, 'td_post_theme_settings', true);
+	    $this->td_review = td_util::get_post_meta_array($this->post->ID, 'td_post_theme_settings');
 
 	    if (!empty($this->td_review['has_review']) and (
 			    !empty($this->td_review['p_review_stars']) or
@@ -448,7 +448,7 @@ abstract class td_module {
 		    // default post type
 
 		    //read the post meta to get the custom primary category
-		    $td_post_theme_settings = get_post_meta($this->post->ID, 'td_post_theme_settings', true);
+		    $td_post_theme_settings = td_util::get_post_meta_array($this->post->ID, 'td_post_theme_settings');
 		    if (!empty($td_post_theme_settings['td_primary_cat'])) {
 			    //we have a custom category selected
 			    $selected_category_obj = get_category($td_post_theme_settings['td_primary_cat']);
@@ -540,7 +540,7 @@ abstract class td_module {
 
 
         //get quotes data from database
-        $post_data_from_db = get_post_meta($this->post->ID, 'td_post_theme_settings', true);
+        $post_data_from_db = td_util::get_post_meta_array($this->post->ID, 'td_post_theme_settings');
 
         if(!empty($post_data_from_db['td_quote_on_blocks'])) {
             return '<div class="td_quote_on_blocks">' . $post_data_from_db['td_quote_on_blocks'] . '</div>';

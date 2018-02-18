@@ -88,10 +88,6 @@ class td_block_25 extends td_block {
                         } else { //2-3 cols
                             $buffy .= $td_block_layout->open4();
                             $buffy .= $td_module_6->render();
-
-                            if ($td_post_count == 4) { //make new column
-                                $buffy .= $td_block_layout->close4();
-                            }
                         }
                         break;
                 }

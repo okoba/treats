@@ -29,7 +29,7 @@ if($loop_sidebar_position == 'sidebar_left') {
 }
 
 ?>
-	<div class="td-main-content-wrap td-main-page-wrap">
+	<div class="td-main-content-wrap td-main-page-wrap td-container-wrap">
 		<div class="td-container <?php echo $td_sidebar_position; ?>">
 			<div class="td-pb-row">
 				<?php

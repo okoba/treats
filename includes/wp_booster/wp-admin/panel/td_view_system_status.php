@@ -64,7 +64,7 @@ require_once "td_view_header.php";
 
 
     // Theme remote http channel used by the theme
-    $td_remote_http = td_util::get_option('td_remote_http');
+    $td_remote_http = td_options::get_array('td_remote_http');
     $http_reset_button = ' <a class="td-button-system-status td-reset-channel" href="admin.php?page=td_system_status&reset_http_channel=1" data-action="reset the theme http channel and remote cache?">Reset channel</a>';
 
     if (empty($td_remote_http['test_status'])) {
@@ -545,10 +545,7 @@ require_once "td_view_header.php";
 
     //Remove the registration key
     if(!empty($_REQUEST['reset_registration']) && $_REQUEST['reset_registration'] == 1) {
-        td_util::update_option('td_cake_status_time', 0);
-        td_util::update_option('td_cake_status', 0);
-        td_util::update_option('td_cake_lp_status', '');
-        td_util::update_option('envato_key', '');
+        td_util::reset_registration();
         ?>
         <!-- redirect page -->
         <script>window.location.replace("<?php echo admin_url() . 'admin.php?page=td_system_status';?>");</script>
@@ -559,7 +556,7 @@ require_once "td_view_header.php";
     //Remove the registration key
     if(!empty($_REQUEST['reset_http_channel']) && $_REQUEST['reset_http_channel'] == 1) {
         //reset http channel
-        td_util::update_option('td_remote_http', array());
+        td_options::update_array('td_remote_http', array());
         //reset cache
         update_option(TD_THEME_OPTIONS_NAME . '_remote_cache', array());
         ?>
@@ -845,9 +842,19 @@ require_once "td_view_header.php";
 		                               echo htmlentities($td_log_params['more_data']);
 		                               echo '</div>';
 
-	                               } else {
-	                               echo htmlentities($td_log_params['more_data']); //display small strings directly in the table
-	                               } ?>
+                                   //string < 200 characters
+                                   } elseif (is_string($td_log_params['more_data'])){
+                                       echo htmlentities($td_log_params['more_data']); //display small strings directly in the table
+
+                                   //other type of data
+                                   } else {
+                                       // details button
+                                       echo '<div><a class="td-button-system-status-details">View Details</a></div>';
+                                       // object data container
+                                       echo '<div class="td-array-viewer"><pre>';
+                                       var_dump($td_log_params['more_data']);
+                                       echo '</pre></div>';
+                                   }?>
                                </div>
                            </td>
 
@@ -1060,7 +1067,7 @@ require_once "td_view_header.php";
            $posts = get_posts($args);
 
            foreach ( $posts as $post) {
-               $post_video_playlist_meta = get_post_meta($post->ID, 'td_playlist_video' , true);
+               $post_video_playlist_meta = td_util::get_post_meta_array($post->ID, 'td_playlist_video');
 
                if ( !empty ($post_video_playlist_meta)) {
                    $posts_video_playlist_meta_array[$post->ID]=$post_video_playlist_meta;
