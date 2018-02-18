@@ -2,6 +2,7 @@
 /*  ----------------------------------------------------------------------------
     the author template
  */
+
 get_header();
 
 //set the template id, used to get the template specific settings

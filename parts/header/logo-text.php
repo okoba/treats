@@ -42,9 +42,27 @@ if (!empty($td_customLogoR)) {
 	if($td_use_h1_logo === true) {
 		echo '<h1 class="td-logo">';
 	};
+
+	// retina logo width of the normal logo
+	$retina_logo_id = attachment_url_to_postid($td_customLogo);
+
+    $retina_logo_width = '';
+	if ($retina_logo_id !== 0) {
+	    $img_props = wp_get_attachment_image_src($retina_logo_id, 'full');
+	    if ($img_props !== false && !empty($img_props[1])) {
+            $retina_logo_width = 'width="' . $img_props[1] . '"';
+        }
+    }
+
+
+
+
+
+
+
 	?>
 		<a class="td-main-logo" href="<?php echo esc_url(home_url( '/' )); ?>">
-			<img class="td-retina-data"  data-retina="<?php echo esc_attr($td_customLogoR) ?>" src="<?php echo $td_customLogo?>" alt="<?php echo $td_logo_alt ?>"<?php echo $td_logo_title ?>/>
+			<img class="td-retina-data"  data-retina="<?php echo esc_attr($td_customLogoR) ?>" src="<?php echo $td_customLogo?>" alt="<?php echo $td_logo_alt ?>"<?php echo $td_logo_title ?> <?php echo $retina_logo_width ?>/>
 			<span class="td-visual-hidden"><?php bloginfo('name'); ?></span>
 		</a>
 	<?php
@@ -66,22 +84,24 @@ if (!empty($td_customLogoR)) {
 			echo '</h1>';
 		};
 	} else { ?>
-    <span class="td-logo-text-container">
-		<a class="td-logo-wrap" href="<?php echo esc_url(home_url( '/' )); ?>">
-			<?php
-			if($td_use_h1_logo === true) {
-				echo '<h1 class="td-logo">';
-			};
-			?>
-				<span class="td-logo-text"><?php if(!$td_logo_text) { echo "NEWSPAPER"; } else { echo $td_logo_text; } ?></span>
-			<?php
-			if($td_use_h1_logo === true) {
-				echo '</h1>';
-			};
-			?>
-			<span class="td-tagline-text"><?php if(!$td_tagline_text) { echo "DISCOVER THE ART OF PUBLISHING"; } else { echo $td_tagline_text; } ?></span>
-		</a>
-    </span>
+		<div class="td-logo-text-wrap">
+			<span class="td-logo-text-container">
+				<a class="td-logo-wrap" href="<?php echo esc_url(home_url( '/' )); ?>">
+					<?php
+					if($td_use_h1_logo === true) {
+						echo '<h1 class="td-logo">';
+					};
+					?>
+						<span class="td-logo-text"><?php if(!$td_logo_text) { echo "NEWSPAPER"; } else { echo $td_logo_text; } ?></span>
+					<?php
+					if($td_use_h1_logo === true) {
+						echo '</h1>';
+					};
+					?>
+					<span class="td-tagline-text"><?php if(!$td_tagline_text) { echo "DISCOVER THE ART OF PUBLISHING"; } else { echo $td_tagline_text; } ?></span>
+				</a>
+			</span>
+		</div>
 	<?php
 	}
 }

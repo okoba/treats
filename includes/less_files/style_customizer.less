@@ -241,6 +241,7 @@
 
   */
   .td-popup {
+    position: relative;
     background-image: url('demos_popup/demos-popup.png');
     background-repeat: no-repeat;
     display: block;
@@ -248,16 +249,61 @@
     width: 140px;
     height: 100px;
 
+    //badge
+    span {
+      display: block;
+      background-size: cover !important;
+      background-repeat: no-repeat !important;
+      background-position: center !important;
+      width: 35px;
+      height: 35px;
+      position: absolute;
+      top: 0;
+      right: 0;
+      opacity: 1;
+      transition: opacity 0.1s ease;
+    }
+
     /* responsive laptop */
     @media (max-width: 1366px) {
       height: 71px;
       width: 100px;
-      background-size: 100px 1846px;
+      background-size: 100px 2982px;
 
+      span {
+        width: 25px;
+        height: 25px;
+      }
+    }
+
+    &:hover {
+      span {
+        opacity: 0.8 !important;
+      }
     }
   }
 
+  .td-popup-lifestyle,
+  .td-popup-gadgets,
+  .td-popup-craft_ideas,
+  .td-popup-business,
+  .td-popup-book_club,
+  .td-popup-blog_architecture,
+  .td-popup-retro,
+  .td-popup-blog_fitness,
+  .td-popup-voice,
+  .td-popup-erotic,
+  .td-popup-art_creek,
+  .td-popup-sound_radar,
+  .td-popup-church,
+  .td-popup-old_fashioned,
+  .td-popup-photography {
+    span {
+      background: url('demos_popup/new-badge.png');
+    }
+  }
 
+//sprite positioning for demos
   .td-popup-animals {
     background-position: 0 0;
   }
@@ -363,7 +409,7 @@
     background-position: 0 -1300px;
     /* responsive laptop */
     @media (max-width: 1366px) {
-      background-position: 0 -923;
+      background-position: 0 -923px;
     }
   }
 
@@ -471,16 +517,125 @@
     }
   }
 
-  //.td-popup-empty2 {
-  //  background-position: 0 -2700px;
-  //  /* responsive laptop */
-  //  @media (max-width: 1366px) {
-  //    background-position: 0 -1917px;
-  //  }
-  //}
+  .td-popup-empty2 {
+    background-position: 0 -2700px;
+    /* responsive laptop */
+    @media (max-width: 1366px) {
+      background-position: 0 -1917px;
+    }
+  }
 
+  .td-popup-lifestyle {
+    background-position: 0 -2800px;
+    /* responsive laptop */
+    @media (max-width: 1366px) {
+      background-position: 0 -1988px;
+    }
+  }
 
+  .td-popup-craft_ideas {
+    background-position: 0 -2900px;
+    /* responsive laptop */
+    @media (max-width: 1366px) {
+      background-position: 0 -2059px;
+    }
+  }
 
+  .td-popup-business {
+    background-position: 0 -3000px;
+    /* responsive laptop */
+    @media (max-width: 1366px) {
+      background-position: 0 -2130px;
+    }
+  }
+
+  .td-popup-book_club {
+    background-position: 0 -3100px;
+    /* responsive laptop */
+    @media (max-width: 1366px) {
+      background-position: 0 -2201px;
+    }
+  }
+
+  .td-popup-blog_architecture {
+    background-position: 0 -3200px;
+    /* responsive laptop */
+    @media (max-width: 1366px) {
+      background-position: 0 -2272px;
+    }
+  }
+
+  .td-popup-retro {
+    background-position: 0 -3300px;
+    /* responsive laptop */
+    @media (max-width: 1366px) {
+      background-position: 0 -2343px;
+    }
+  }
+
+  .td-popup-blog_fitness {
+    background-position: 0 -3400px;
+    /* responsive laptop */
+    @media (max-width: 1366px) {
+      background-position: 0 -2414px;
+    }
+  }
+
+  .td-popup-voice {
+    background-position: 0 -3500px;
+    /* responsive laptop */
+    @media (max-width: 1366px) {
+      background-position: 0 -2485px;
+    }
+  }
+
+  .td-popup-erotic {
+    background-position: 0 -3600px;
+    /* responsive laptop */
+    @media (max-width: 1366px) {
+      background-position: 0 -2556px;
+    }
+  }
+
+  .td-popup-art_creek {
+    background-position: 0 -3700px;
+    /* responsive laptop */
+    @media (max-width: 1366px) {
+      background-position: 0 -2627px;
+    }
+  }
+
+  .td-popup-sound_radar {
+    background-position: 0 -3800px;
+    /* responsive laptop */
+    @media (max-width: 1366px) {
+      background-position: 0 -2698px;
+    }
+  }
+
+  .td-popup-church {
+    background-position: 0 -3900px;
+    /* responsive laptop */
+    @media (max-width: 1366px) {
+      background-position: 0 -2769px;
+    }
+  }
+
+  .td-popup-old_fashioned {
+    background-position: 0 -4000px;
+    /* responsive laptop */
+    @media (max-width: 1366px) {
+      background-position: 0 -2840px;
+    }
+  }
+
+  .td-popup-photography {
+    background-position: 0 -4100px;
+    /* responsive laptop */
+    @media (max-width: 1366px) {
+      background-position: 0 -2911px;
+    }
+  }
 
   /* ----------------------------------------------- */
 

@@ -86,7 +86,7 @@ class td_demo_installer {
 	            $td_options[$option_id] = '';
             }
             //typography settings
-	        $td_options['td_fonts'] = '';
+	        $td_options['td_fonts'] = array();
 
             /**
              * css font files (google) buffer

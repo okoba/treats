@@ -25,18 +25,17 @@
   height: 100%;
   position: fixed;
   z-index: -99999;
-  //text-align: center;
   top: 0;
 }
 
-.td-backstretch {
+body .td-backstretch {
   max-width: none;
   opacity: 0;
   transition: opacity 2s;
   display: block;
 }
 
-.td-stretch-width {
+body .td-stretch-width {
   height: auto;
   width: 100.03%;
   margin: 0;
@@ -46,17 +45,16 @@
   .transform(translateX(-50%));
 }
 
-.td-stretch-height {
+body .td-stretch-height {
   position: relative;
   height: 100%;
   width: auto;
   //margin: 0 -1000%;
 
-  //  // or this  @todo verifica asta (50% + -5o%)
+  // or this  @todo verifica asta (50% + -5o%)
   left: 50%;
   .transform(translateX(-50%));
 }
-
 
 // this method can cause elements to be blurry due to the element being placed on a “half pixel”. A solution for this is to set its parent element to preserve-3d.
 //#td-full-screen-header-image {
@@ -72,7 +70,7 @@ body {
     cursor: pointer;
   }
 
-  &.td-ad-background-link #td-outer-wrap {
+  &.td-ad-background-link .td-container-wrap {
     cursor: auto;
   }
 }

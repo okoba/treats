@@ -223,7 +223,7 @@ class td_block_image_box extends td_block {
 						$buffy .= '<div class="td-image-box-span" style="' . $box_gap_padding . $box_space . '">';
 							$buffy .= '<div class="td-custom">';
 								$buffy .= '<div class="td-custom-image">';
-								$buffy .= '<a style="background-image: url(\'' . get_template_directory_uri() . '/images/no-thumb/td_640x400.png\');' . $box_height . '" href="#" rel="bookmark" title="Custom title"></a>';
+								$buffy .= '<a href="#" rel="bookmark" title="Custom title"></a>';
 								$buffy .= '</div>';
 								$buffy .= '<div class="td-custom-title">';
 								$buffy .= '<h3 class="entry-title"><a href="#">Custom title</a></h3>';

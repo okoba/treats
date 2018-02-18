@@ -173,7 +173,7 @@ class td_video_support{
 				return;
 			}
 
-			$td_post_video = get_post_meta($post_id, 'td_post_video', true);
+			$td_post_video = td_util::get_post_meta_array($post_id, 'td_post_video');
 
 			//check to see if the url is valid
 			if (empty($td_post_video['td_video']) or self::validate_video_url($td_post_video['td_video']) === false) {

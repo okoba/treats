@@ -3,7 +3,7 @@ Header style 8
 -->
 
 <div class="td-header-wrap td-header-style-8">
-    <div class="td-container td-container-wrap <?php echo td_util::get_option('td_full_menu'); ?>">
+    <div class="td-container <?php echo td_util::get_option('td_full_menu'); ?>">
         <div class="td-header-sp-logo">
             <?php locate_template('parts/header/logo-h1.php', true, false);?>
         </div>

@@ -30,10 +30,12 @@ Politics demo
     padding: 3px 25px 3px 25px;
   }
 }
-.td-politics .td-header-style-11 .td-logo-wrap-full {
-  border-bottom: none;
+.td-politics .td-header-style-11 .td-logo-text-wrap {
   min-height: 200px;
   line-height: 200px;
+}
+.td-politics .td-header-style-11 .td-logo-wrap-full {
+  border-bottom: none;
 }
 .td-politics .td-header-style-11 .td-logo-text {
   font-size: 77px;

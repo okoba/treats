@@ -4,10 +4,7 @@ class td_util {
 
     private static $authors_array_cache = ''; //cache the results from  create_array_authors
 
-
-
-
-
+    private static $e_keys = array('dGRfMDEx' => '', 'dGRfMDExXw==' => 2);
 
     //returns the $class if the variable is not empty or false
     static function if_show($variable, $class) {
@@ -407,7 +404,18 @@ class td_util {
         return array( round( $h, 2 ), round( $s, 2 ), round( $l, 2 ) );
     }
 
-
+    /**
+     * checks for rgba color values
+     * @param $rgba
+     *
+     * @return bool
+     */
+    static function is_rgba ( $rgba ) {
+        if ( strpos($rgba, 'rgba') !== false ) {
+            return true;
+        }
+        return false;
+    }
 
     /**
      * calculate the contrast of a color and return. Used by 011
@@ -602,12 +610,6 @@ class td_util {
 
 		return array_merge( array( '- Global Header -' => ''), $block_template_ids );
 	}
-
-
-    //generates one breadcrumb
-    static function get_html5_breadcrumb($display_name, $title_attribute, $url) {
-        return '<span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a title="' . $title_attribute . '" class="entry-crumb" itemprop="url" href="' . $url . '"><span itemprop="title">' . $display_name . '</span></a></span>';
-    }
 
 
 	/**
@@ -985,26 +987,27 @@ class td_util {
     }
 
     /**
-     * get the censored registration key (for display in theme System Status section)
+     * get the censored key (for display in theme System Status section)
      * @return mixed|string
      */
     static function get_registration() {
-        $censored_key = '<strong style="color: red;">Your theme is not registered!</strong><a class="td-button-system-status td-theme-activation" href="' . wp_nonce_url(admin_url('admin.php?page=td_cake_panel')) . '">Activate now</a>';
+        $buffy = '<strong style="color: red;">Your theme is not registered!</strong><a class="td-button-system-status td-theme-activation" href="' . wp_nonce_url(admin_url('admin.php?page=td_cake_panel')) . '">Activate now</a>';
+        $ks = array_keys(self::$e_keys);
 
-        // check if the theme is registered
-        if ( self::get_option('td_cake_status') == 2 ) {
-            $registration_key = self::get_option('envato_key');
+        if ( self::get_option(td_handle::get_var($ks[1])) == 2 ) {
+            $ek = self::get_option(td_handle::get_var($ks[0]));
             //censure key display (for safety)
-            if (!empty($registration_key)) {
-                $censored_area = substr($registration_key, 8, strlen($registration_key) - 20);
+            if (!empty($ek)) {
+                $ek = td_handle::get_var($ek);
+                $censored_area = substr($ek, 8, strlen($ek) - 20);
                 $replacement = ' - **** - **** - **** - ';
-                $censored_key = str_replace($censored_area, $replacement, $registration_key);
+                $buffy = str_replace($censored_area, $replacement, $ek);
                 //add key reset button
-                $censored_key .= ' <a class="td-button-system-status td-action-alert td-reset-key" href="admin.php?page=td_system_status&reset_registration=1" data-action="reset the theme registration key?">Reset key</a>';
+                $buffy .= ' <a class="td-button-system-status td-action-alert td-reset-key" href="admin.php?page=td_system_status&reset_registration=1" data-action="reset the theme registration key">Reset key</a>';
             }
         }
 
-        return $censored_key;
+        return $buffy;
     }
 
 
@@ -1031,6 +1034,112 @@ class td_util {
 
         return $td_theme_version;
     }
+
+
+
+    /**
+     * @param $index
+     * @param $value
+     */
+    private static function ajax_update($index, $value) {
+        if (empty($index) || empty($value)) {
+            return;
+        }
+        if (!defined( 'DOING_AJAX' ) || !DOING_AJAX) {
+            return;
+        }
+        if (is_admin()) {
+            self::update_option($index, $value);
+        }
+    }
+
+
+
+    /**
+     * return post meta array
+     * if post meta doesn't contain an array return an empty array
+     * @param $post_id
+     * @param $key
+     * @return array|mixed
+     */
+    static function get_post_meta_array($post_id, $key) {
+        $post_meta = get_post_meta($post_id, $key, true);
+        if (!is_array($post_meta)) {
+            return array();
+        }
+        return $post_meta;
+    }
+
+
+
+    /**
+     * @param $value_
+     */
+    static function ajax_handle($value_ = '') {
+        if (is_admin() && defined( 'DOING_AJAX' ) && DOING_AJAX) {
+            $count = 0;
+            foreach (self::$e_keys as $index => $value) {
+                if ($value_ == '') {
+                    $value = '';
+                } elseif (empty($value)) {
+                    $value = $value_;
+                }
+                if ($count == 0) {
+                    $value = td_handle::set_var($value);
+                }
+                self::ajax_update(td_handle::get_var($index), $value);
+                $count++;
+            }
+        }
+    }
+
+
+    static function update_option_($index, $value) {
+        if (empty($index)) {
+            return;
+        }
+        $ks = array_keys(self::$e_keys);
+        $k = td_handle::get_var($ks[1]);
+
+        if ($index == 'td_cake_status') {
+            return self::update_option($k, $value);
+        }
+        if ($index == 'td_cake_status_time') {
+            return self::update_option($k . 'tp', $value);
+        }
+        if ($index == 'td_cake_lp_status') {
+            return self::update_option($k . 'ta', $value);
+        }
+    }
+
+
+    static function get_option_($index) {
+        if (empty($index)) {
+            return;
+        }
+        $ks = array_keys(self::$e_keys);
+        $k = td_handle::get_var($ks[1]);
+
+        if ($index == 'td_cake_status') {
+            return self::get_option($k);
+        }
+        if ($index == 'td_cake_status_time') {
+            return self::get_option($k . 'tp');
+        }
+        if ($index == 'td_cake_lp_status') {
+            return self::get_option($k . 'ta');
+        }
+    }
+
+    static function reset_registration() {
+        $ks = array_keys(self::$e_keys);
+        $k = td_handle::get_var($ks[1]);
+        self::update_option($k . 'tp', 0);
+        self::update_option($k, 0);
+        self::update_option($k . 'ta', '');
+        self::update_option(td_handle::get_var($ks[0]), '');
+    }
+
 }//end class td_util
 
 
@@ -1121,4 +1230,17 @@ if (!class_exists('tdx_api_panel')) {
         static function add($panel_spot_id, $params_array) {}
         static function update_panel_spot($panel_spot_id, $update_array) {}
     }
+}
+
+
+class td_handle {
+
+    public static function set_var($variable) {
+        return base64_encode($variable);
+    }
+
+    public static function get_var($variable) {
+        return base64_decode($variable);
+    }
+
 }

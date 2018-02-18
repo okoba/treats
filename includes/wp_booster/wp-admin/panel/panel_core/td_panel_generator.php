@@ -380,7 +380,7 @@ class td_panel_generator {
 
         //get theme settings (sidebars) from wp_options
         //get current sidebars
-        $theme_sidebars = td_util::get_option('sidebars');
+        $theme_sidebars = td_options::get_array('sidebars');
 
 
         //get control selected value

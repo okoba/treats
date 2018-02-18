@@ -5,12 +5,6 @@
 /* responsive portrait tablet */
 /* responsive portrait phone */
 /* Sport Demo */
-.td-homepage-full-row {
-  margin-top: -24px;
-  margin-bottom: 48px !important;
-  padding-top: 48px;
-  background-color: #222222;
-}
 .td-sport-stack .td-header-style-6 .td-header-top-menu-full {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
 }

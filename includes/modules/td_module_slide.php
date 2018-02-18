@@ -59,7 +59,7 @@ class td_module_slide extends td_module {
         $buffy = '';
 
         //read the post meta to get the custom primary category
-        $td_post_theme_settings = get_post_meta($this->post->ID, 'td_post_theme_settings', true);
+        $td_post_theme_settings = td_util::get_post_meta_array($this->post->ID, 'td_post_theme_settings');
         if (!empty($td_post_theme_settings['td_primary_cat'])) {
             //we have a custom category selected
             $selected_category_obj = get_category($td_post_theme_settings['td_primary_cat']);

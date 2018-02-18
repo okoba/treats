@@ -1,29 +1,3 @@
-
-// error message that shows up when a requiered setting is missing from the block (weather widget / video playlist etc)
-.td-block-missing-settings {
-  font-size:11px;
-  text-align: left;
-  padding: 20px;
-  background-color: #faf8fc;
-  border: 1px solid #eeecf0;
-  color:black;
-
-  span {
-    background-color: #fe6c61;
-    color: white;
-    font-weight: bold;
-    padding: 3px 8px 4px 8px;
-    border-radius: 4px;
-    font-size: 10px;
-    position: relative;
-    top:-1px;
-    margin-right: 10px;
-  }
-}
-
-
-
-
 /*  ----------------------------------------------------------------------------
     Block Wrap
 */
@@ -114,7 +88,7 @@
 .td-trending-now-wrapper:hover .td-trending-now-title,
 .wpb_tabs li.ui-tabs-active a,
 .wpb_tabs li:hover a,
-.woocommerce .product .products h2,
+.woocommerce .product .products h2:not(.woocommerce-loop-product__title),
 .td-subcat-filter .td-subcat-dropdown:hover .td-subcat-more {
   background-color: @td_theme_color;
 }
@@ -988,6 +962,13 @@
         padding-bottom: 0;
       }
     }
+
+    /* responsive portrait phone */
+    @media (max-width: @responsive_p_phone_max) {
+      .td_module_mx4 {
+        margin-bottom: 0;
+      }
+    }
   }
 
   /* responsive portrait phone */
@@ -1011,9 +992,13 @@
 }
 
 // hack to fix it on 1 column
-.td-pb-span4 .td_block_15 {
-  float: left;
+.td-column-1.td_block_15 {
   overflow: hidden;
+
+  /* tablet + desktop */
+  @media (min-width: @responsive_p_phone_max) {
+    //float: left;
+  }
 
   .td_block_inner {
     .clearfix();
@@ -2019,13 +2004,38 @@
     Block 25
 */
 .td_block_25 {
-  .td-block-row:last-child > div .td_module_wrap:last-child {
-    padding-bottom: 0;
-  }
-
-  &.td-column-1 {
-    .td-block-span12:last-child .td_module_wrap {
+  /* without mobile */
+  @media (min-width: @responsive_p_tablet_min) {
+    .td-block-row:last-child > div .td_module_wrap:last-child {
       padding-bottom: 0;
+    }
+
+    &.td-column-1 {
+      .td-block-span12:last-child .td_module_wrap {
+        padding-bottom: 0;
+      }
+    }
+  }
+  /* responsive portrait phone */
+  @media (max-width: @responsive_p_phone_max) {
+    &.td-column-3 {
+      .td-block-span4:last-child {
+        .td_module_wrap:last-child {
+          padding-bottom: 0;
+        }
+      }
+    }
+    &.td-column-2 {
+      .td-block-span6:last-child {
+        .td_module_wrap:last-child {
+          padding-bottom: 0;
+        }
+      }
+    }
+    &.td-column-1 {
+      .td-block-span12:last-child .td_module_wrap {
+        padding-bottom: 0;
+      }
     }
   }
 }
@@ -2183,8 +2193,10 @@
 
 }
 
-.td-main-page-wrap .td-pb-row:first-child {
-  .td_block_trending_now {
+.td-main-page-wrap .td-container > .td-pb-row:first-child, // visual composer
+.td-main-page-wrap .tdc-row:first-child .wpb_wrapper > &, // tdc live
+.td-main-page-wrap .tdc-row:first-of-type .tdc-element:first-of-type { // tdc editor
+  .td_block_trending_now:first-child {
     position: relative;
     margin: -24px 0 24px;
     z-index: 1;
@@ -2282,6 +2294,7 @@
 */
 .td_block_text_with_title {
   margin-bottom: 44px;
+  .transform(translateZ(0));
 
   p:last-child {
     margin-bottom: 0;
@@ -2454,6 +2467,11 @@
   .td-image-box-row {
     margin: 0 -20px;
     .clearfix();
+
+    /* responsive portrait phone */
+    @media (max-width: @responsive_p_phone_max) {
+      margin: 0 -10px;
+    }
   }
   .td-image-box-span {
     padding: 0 20px;
@@ -2463,6 +2481,7 @@
     @media (max-width: @responsive_p_phone_max) {
       width: 100% !important;
       float: none;
+      padding: 0 10px;
     }
   }
 
@@ -3140,7 +3159,7 @@
     }
   }
 
-  .vc_column_text {
+  .wpb_text_column {
     position: absolute;
     top: 6px;
     margin: 0;

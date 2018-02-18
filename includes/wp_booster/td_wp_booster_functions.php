@@ -6,9 +6,6 @@
 do_action('td_wp_booster_before');  //@todo is probably not used by anyone
 
 
-if (TD_DEPLOY_MODE == 'dev') {
-	require_once('external/kint/Kint.class.php');
-}
 
 // theme utility files
 require_once('td_global.php');
@@ -106,6 +103,11 @@ add_filter('manage_posts_columns', array('td_page_views', 'on_manage_posts_colum
 add_action('manage_posts_custom_column', array('td_page_views', 'on_manage_posts_custom_column'), 5, 2);
 
 
+/* ----------------------------------------------------------------------------
+ * JSON LD Breadcrumbs
+ */
+add_action('wp_head', array('td_page_generator', 'get_breadcrumbs_json_ld'), 45);
+
 
 /* ----------------------------------------------------------------------------
  * Review support
@@ -155,6 +157,15 @@ add_action('wp_ajax_td_ajax_get_views',        array('td_ajax', 'on_ajax_get_vie
 // Secure Ajax
 add_action('wp_ajax_td_ajax_new_sidebar', array('td_ajax', 'on_ajax_new_sidebar'));        // ajax: admin panel - new sidebar #sec
 add_action('wp_ajax_td_ajax_delete_sidebar', array('td_ajax', 'on_ajax_delete_sidebar'));  // ajax: admin panel - delete sidebar #sec
+
+//ajax: translation
+add_action('wp_ajax_td_ajax_share_translation', array('td_ajax', 'on_ajax_share_translation')); // ajax: share translations
+add_action('wp_ajax_td_ajax_get_translation', array('td_ajax', 'on_ajax_get_translation')); // ajax: get translations
+
+//ajax: activation
+add_action('wp_ajax_td_ajax_check_envato_code', array('td_ajax', 'on_ajax_check_envato_code'));
+add_action('wp_ajax_td_ajax_register_forum_user', array('td_ajax', 'on_ajax_register_forum_user'));
+add_action('wp_ajax_td_ajax_manual_activation', array('td_ajax', 'on_ajax_manual_activation'));
 
 
 
@@ -279,7 +290,7 @@ add_action('wp_head', 'td_include_user_compiled_css', 10);
 add_action('wp_enqueue_scripts', 'td_load_css_fonts');
 function td_load_css_fonts() {
 
-	$cur_td_fonts = td_util::get_option('td_fonts'); // get the google fonts used by user
+	$cur_td_fonts = td_options::get_array('td_fonts'); // get the google fonts used by user
 
 	$unique_google_fonts_ids = array();
 
@@ -446,7 +457,7 @@ function load_wp_admin_js() {
 function td_on_wp_head_canonical(){
 
 	global $post;
-	$td_smart_list = get_post_meta($post->ID, 'td_post_theme_settings', true);
+	$td_smart_list = td_util::get_post_meta_array($post->ID, 'td_post_theme_settings');
 
 	/** ----------------------------------------------------------------------------
 	 * Smart list support. class_exists and new object WORK VIA AUTOLOAD
@@ -535,7 +546,7 @@ function td_on_wp_head_canonical(){
 
 		global $wp_query;
 
-		$td_homepage_loop = get_post_meta($post->ID, 'td_homepage_loop', true);
+		$td_homepage_loop = td_util::get_post_meta_array($post->ID, 'td_homepage_loop');
 		query_posts(td_data_source::metabox_to_args($td_homepage_loop, $paged));
 
 		$max_page = $wp_query->max_num_pages;
@@ -580,12 +591,14 @@ function hook_wp_head() {
 		}
 
 		// show author meta tag on single pages if it's not disabled from theme's panel
-		if (td_util::get_option('tds_p_show_author_name') != 'hide') {
-			$td_post_author = get_the_author_meta('display_name', $post->post_author);
-			if ($td_post_author) {
-				echo '<meta name="author" content="' . $td_post_author . '">' . "\n";
-			}
-		}
+		// this is not used by facebook anymore and it generates error in facebook's sharing debugger
+		// removed the comment if needed
+//		if (td_util::get_option('tds_p_show_author_name') != 'hide') {
+//			$td_post_author = get_the_author_meta('display_name', $post->post_author);
+//			if ($td_post_author) {
+//				echo '<meta name="author" content="' . $td_post_author . '">' . "\n";
+//			}
+//		}
 	}
 
 	// fav icon support
@@ -749,7 +762,7 @@ function td_wpseo_title($seo_title) {
 	if (is_singular('post')) {
 		global $post;
 
-		$td_post_theme_settings = get_post_meta($post->ID, 'td_post_theme_settings', true);
+		$td_post_theme_settings = td_util::get_post_meta_array($post->ID, 'td_post_theme_settings');
 		if (is_array($td_post_theme_settings) && array_key_exists('smart_list_template', $td_post_theme_settings)) {
 			$is_smart_list = true;
 		}
@@ -1935,7 +1948,7 @@ function td_add_single_template_class($classes) {
 		global $post;
 
 		$active_single_template = '';
-		$td_post_theme_settings = get_post_meta($post->ID, 'td_post_theme_settings', true);
+		$td_post_theme_settings = td_util::get_post_meta_array($post->ID, 'td_post_theme_settings');
 
 		if (!empty($td_post_theme_settings['td_post_template'])) {
 			// we have a post template set in the post
@@ -2111,8 +2124,21 @@ function td_init_booster() {
 	global $content_width;
 
 	// content width - this is overwritten in post
-	if (!isset($content_width)) {
-		$content_width = 640;
+	if ( !isset($content_width) ) {
+
+		switch (TD_THEME_NAME) {
+			case 'Newspaper' :
+				$content_width = 696;
+				break;
+
+			case 'Newsmag' :
+				$content_width = 640;
+				break;
+
+			case 'ionMag' :
+				$content_width = 640;
+				break;
+		}
 	}
 
 	/* ----------------------------------------------------------------------------
@@ -2133,27 +2159,27 @@ function td_init_booster() {
 	 * Add default render function for 'td_block_social_counter' shortcode.
 	 * It's overwritten by the social counter plugin.
 	 */
-	add_shortcode('td_block_social_counter', 'td_block_social_counter_func');
-	function td_block_social_counter_func($atts) {
-		if ( current_user_can( 'administrator' ) ) {
-			$buffer = '';
-			$buffer .= '<style>
-				.td-block-social-counter {
-				  border: 1px solid red;
-				  min-height: 50px;
-				  line-height: 50px;
-				  vertical-align: middle;
-				  text-align: center;
-				}
-				.td-block-social-counter:before {
-				  content: "Activate Social Counter plugin";
-				}
-				</style>';
-			$buffer .= '<div class="td-block-social-counter"></div>';
-			return $buffer;
-		}
-		return '';
-	}
+//	add_shortcode('td_block_social_counter', 'td_block_social_counter_func');
+//	function td_block_social_counter_func($atts) {
+//		if ( current_user_can( 'administrator' ) ) {
+//			$buffer = '';
+//			$buffer .= '<style>
+//				.td-block-social-counter {
+//				  border: 1px solid red;
+//				  min-height: 50px;
+//				  line-height: 50px;
+//				  vertical-align: middle;
+//				  text-align: center;
+//				}
+//				.td-block-social-counter:before {
+//				  content: "Activate Social Counter plugin";
+//				}
+//				</style>';
+//			$buffer .= '<div class="td-block-social-counter"></div>';
+//			return $buffer;
+//		}
+//		return '';
+//	}
 
 
 
@@ -2205,7 +2231,7 @@ function td_init_booster() {
 	));
 
 	//get our custom dynamic sidebars
-	$currentSidebars = td_util::get_option('sidebars');
+	$currentSidebars = td_options::get_array('sidebars');
 
 	//if we have user made sidebars, register them in wp
 	if (!empty($currentSidebars)) {
@@ -2374,7 +2400,7 @@ function td_template_include_filter( $wordpress_template_path ) {
 		$single_template_id = td_util::get_option('td_default_site_post_template');
 
 		// check if we have a specific template
-		$td_post_theme_settings = get_post_meta($post->ID, 'td_post_theme_settings', true);
+		$td_post_theme_settings = td_util::get_post_meta_array($post->ID, 'td_post_theme_settings');
 		if (!empty($td_post_theme_settings['td_post_template'])) {
 			$single_template_id = $td_post_theme_settings['td_post_template'];
 		}

@@ -61,6 +61,27 @@ Medicine demo
     font-family: @font1;
   }
 
+  /* responsive portrait phone */
+  @media (max-width: @responsive_p_phone_max) {
+    .td-trending-now-wrapper {
+      padding: 10px 0 0 0;
+
+      .td-trending-now-display-area {
+        height: 56px;
+      }
+
+      .td-trending-now-post {
+        height: 56px;
+      }
+
+      .entry-title {
+        line-height: 20px !important;
+      }
+    }
+  }
+
+
+
   @media (min-width: 1141px) {
     .td_block_big_grid_7.td-grid-style-1 .td_module_mx6 .entry-title {
       font-size: 19px;

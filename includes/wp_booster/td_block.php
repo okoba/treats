@@ -988,14 +988,14 @@ class td_block {
 	    $offset = 0;
 
 	    if (isset($this->atts['offset'])) {
-		    $offset = $this->atts['offset'];
+		    $offset = (int)$this->atts['offset'];
 	    }
 
 	    $buffy = '';
 
 
 	    $ajax_pagination = $this->get_att('ajax_pagination');
-	    $limit = $this->get_att('limit');
+	    $limit = (int)$this->get_att('limit');
 
 
         switch ($ajax_pagination) {
@@ -1461,6 +1461,14 @@ class td_block {
 		    $block_template_id = td_options::get('tds_global_block_template', 'td_block_template_1');
 	    }
 	    $block_classes[] = $block_template_id;
+
+
+	    /**
+	     * Add 'tdc-no-posts' class that show info msg for blocks without any modules. Its style is in tagDiv composer
+	     */
+	    if ( $this->is_loop_block() && empty( $this->td_query->posts ) ) {
+		    $block_classes[] = 'tdc-no-posts';
+	    }
 
 
         //remove duplicates

@@ -73,6 +73,10 @@
   font-family: @font_open_sans;
   color: @td_color_text;
   font-size: 12px;
+
+  &::-ms-expand {
+    display: none;
+  }
 }
 
 .td-panel-dropdown:focus {
@@ -274,20 +278,22 @@
   background: url("../images/panel/del-sidebar-opt.png") no-repeat 100% 50%;
 }
 
-.td-new-sidebar-input{
-  height: 60px;
+.td-new-sidebar-input {
   border-bottom:  1px solid @td_color_border_controls;
+  position: relative;
+  padding: 15px;
 }
 
-.td_new_sidebar_field{
+.td_new_sidebar_field {
   display: inline-block;
-  margin: 15px 15px 0px 15px;
-  width: 191px !important; //nothing should overwrite this (for page options panel)
-  height: 30px !important; //nothing should overwrite this (for page options panel)
+  margin: 0;
+  height: 32px !important;
   border: 1px solid @td_color_border_controls;
   font-family: @font_open_sans;
   font-size: 12px;
   box-shadow: none !important;
+  width: 100% !important;
+  padding-left: 10px;
 }
 .td_new_sidebar_field:focus {
   border: 1px solid @td_color_border_controls !important;
@@ -295,14 +301,17 @@
 
 .td-button-add-new-sidebar {
   display: inline-block;
-  width: 55px;
+  padding: 0 15px;
   background-color: @td_panel_color;
-  color: #FFFFFF;
+  color: #fff;
   text-align: center;
   cursor: pointer;
   font-family: @font_open_sans;
   font-size: 12px;
-  line-height: 28px;
+  line-height: 32px;
+  position: absolute;
+  top: 15px;
+  right: 15px;
 }
 
 .td-button-add-new-sidebar:hover {

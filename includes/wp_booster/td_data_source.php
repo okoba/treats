@@ -101,12 +101,13 @@ class td_data_source {
 
                         //get the category object
                         $td_tmp_cat_obj =  get_category($cat_id);
-
-                        //make the $args
-                        if (empty($wp_query_args['category_name'])) {
-                            $wp_query_args['category_name'] = $td_tmp_cat_obj->slug; //get by slug (we get the children categories too)
-                        } else {
-                            $wp_query_args['category_name'] .= ',' . $td_tmp_cat_obj->slug; //get by slug (we get the children categories too)
+                        if ( !empty($td_tmp_cat_obj) ) {
+                            //make the $args
+                            if (empty($wp_query_args['category_name'])) {
+                                $wp_query_args['category_name'] = $td_tmp_cat_obj->slug; //get by slug (we get the children categories too)
+                            } else {
+                                $wp_query_args['category_name'] .= ',' . $td_tmp_cat_obj->slug; //get by slug (we get the children categories too)
+                            }
                         }
                         unset($td_tmp_cat_obj);
                     }

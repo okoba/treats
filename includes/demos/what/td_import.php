@@ -26,10 +26,14 @@ td_demo_menus::add_link(array(
     'parent_id' => ''
 ));
 
+// main background > keep it empty to make sure that no bg img is set
+td_demo_misc::update_background('');
 
-/*  ----------------------------------------------------------------------------
-    background - leave empty if you want to make sure that there is NO background on the demo - td_demo_misc::update_background('');
- */
+// mobile menu/search background
+td_demo_misc::update_background_mobile('td_pic_4');
+
+// login background
+td_demo_misc::update_background_login('td_pic_4');
 
 /*  ----------------------------------------------------------------------------
     logo
@@ -79,6 +83,11 @@ td_demo_misc::add_ad_image('sidebar', 'td_what_sidebar_ad');
  */
 //default sidebar
 td_demo_widgets::remove_widgets_from_sidebar('default');
+
+//remove footer widgets > remove existing widgets from footer widgets areas
+td_demo_widgets::remove_widgets_from_sidebar('footer-1');
+td_demo_widgets::remove_widgets_from_sidebar('footer-2');
+td_demo_widgets::remove_widgets_from_sidebar('footer-3');
 
 td_demo_widgets::add_widget_to_sidebar('default', 'td_block_popular_categories_widget',
     array (

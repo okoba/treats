@@ -20,7 +20,7 @@ function td_css_demo_gen() {
 		.td-magazine .td-header-style-1 .td_mega_menu_sub_cats .cur-sub-cat,
 		.td-magazine .vc_tta-container .vc_tta-color-grey.vc_tta-tabs-position-top.vc_tta-style-classic .vc_tta-tabs-container .vc_tta-tab.vc_active > a,
 		.td-magazine .vc_tta-container .vc_tta-color-grey.vc_tta-tabs-position-top.vc_tta-style-classic .vc_tta-tabs-container .vc_tta-tab:hover > a,
-		.td-magazine .td-related-title .td-cur-simple-item {
+		.td-magazine .td_block_template_1 .td-related-title .td-cur-simple-item {
 			color: @theme_color;
 		}
 

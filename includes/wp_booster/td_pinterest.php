@@ -14,7 +14,7 @@ class td_pinterest {
 
         // pinterest id is not set
         if (empty($atts['pinterest_id'])) {
-            return '';
+	        return td_util::get_block_error('Pinterest', 'pinterest data error: pinterest data is not set, please check the ID' );
         }
 
         // prepare the data
@@ -43,7 +43,8 @@ class td_pinterest {
 
         // stop render when no data is received
         if ($pinterest_data['user_page_json'] == '') {
-            return self::error('Render failed - no data is received, please check the ID: ' . $atts['pinterest_id']);
+            //return self::error('Render failed - no data is received, please check the ID: ' . $atts['pinterest_id']);
+	        return td_util::get_block_error('Pinterest', 'Render failed - no data is received, please check the ID: ' . $atts['pinterest_id']);
         }
 
         ob_start();
@@ -174,7 +175,7 @@ class td_pinterest {
                         if(!empty($pinterest_board_feeds) && is_array($pinterest_board_feeds)) {
 
                             //sort the feeds by date
-                            usort($pinterest_board_feeds, 'self::sort_pins_by_date');
+                            usort($pinterest_board_feeds, 'td_pinterest::sort_pins_by_date' );
 
                             //reverse feeds array
                             $pinterest_board_feeds = array_reverse($pinterest_board_feeds);
@@ -209,7 +210,8 @@ class td_pinterest {
             </div>
             <?php
         } else {
-            return self::error('Render failed - the [user_page_json]>[data] array has not been received, please check the ID: ' . $atts['pinterest_id']);
+            //return self::error('Render failed - the [user_page_json]>[data] array has not been received, please check the ID: ' . $atts['pinterest_id']);
+	        return td_util::get_block_error('Pinterest', 'Render failed - the [user_page_json]>[data] array has not been received, please check the ID: ' . $atts['pinterest_id']);
         }
 
         return ob_get_clean();
@@ -261,7 +263,8 @@ class td_pinterest {
                 // we have an error in the data retrieval process
                 $pinterest_data = td_remote_cache::get(__CLASS__, $cache_key);
                 if ($pinterest_data === false) {    // miss and io error... shit / die
-                    return self::error('pinterest data error: ' . $pinterest_get_data);
+                    //return self::error('pinterest data error: ' . $pinterest_get_data);
+	                return td_util::get_block_error('Pinterest', 'pinterest data error: ' . $pinterest_get_data);
                 }
 
                 td_remote_cache::extend(__CLASS__, $cache_key, self::$caching_time);
@@ -305,7 +308,7 @@ class td_pinterest {
             return 'pinterest data is not set, please check the ID';
         }
 
-        if ($pinterest_json['tree']['data']['type'] !== 'board') {
+        if ( isset($pinterest_json['tree']['data']['type']) && $pinterest_json['tree']['data']['type'] !== 'board') {
             return 'Invalid pinterest data for  <code>' . $atts['pinterest_id'] . '</code> please check the <em>user/board_id</em>';
         }
 
@@ -328,11 +331,13 @@ class td_pinterest {
         }
 
         // get the serialized data string present in the page script
-        $pattern = '/jsInit1\'>(.*)<\/script>/sU';
-        preg_match($pattern, $data, $matches);
+        $pattern = '/jsInit1\'>(.*)<\/script>/';
 
-        if (!empty($matches[1])) {
-            return $matches[1];
+	    preg_match_all($pattern, $data, $matches);
+
+
+        if (!empty($matches[1]) && count($matches[1])) {
+            return $matches[1][0];
         } else {
             return false;
         }

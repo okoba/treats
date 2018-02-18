@@ -4,6 +4,11 @@
 
   .td-header-style-11 {
 
+    & + .td-main-content-wrap .td-crumb-container,
+    & + .td-category-header .td-crumb-container {
+      display: none;
+    }
+
     .sf-menu > li > a:hover,
     .sf-menu > .sfHover > a,
     .sf-menu > .current-menu-item > a,
@@ -21,9 +26,17 @@
       color: #969696!important;
     }
 
-    .td-logo-wrap-full{
+    .td-logo-wrap-full {
       border: none;
       margin-top: 35px;
+
+      .td-main-logo img {
+        /* responsive landscape tablet */
+        @media (max-width: @responsive_l_tablet_max) {
+          padding-left: 50px;
+          padding-right: 50px;
+        }
+      }
     }
 
     .td-a-rec-id-header > div,
@@ -74,14 +87,42 @@
     }
   }
 
-  .vc_separator h4 {
-    font-family: "Hind";
-    font-size: 16px;
-    line-height: 1;
+  .td-beauty-blog-title-block {
+    margin-top: 15px;
+    margin-bottom: 36px;
+
+    .td-block-title {
+      padding: 0;
+
+      &:before {
+        display: none;
+      }
+    }
+
+    span {
+      position: relative;
+
+      &:before,
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: 5px;
+        width: 69px;
+        height: 2px;
+        background-color: #2a2a2a;
+      }
+
+      &:before {
+        left: -82px;
+      }
+
+      &:after {
+        right: -82px;
+      }
+    }
   }
 
   //block style
-
   .td_block_5 {
 
     .td-module-meta-info{
@@ -317,19 +358,11 @@
     .td-post-title {
       text-align: center;
     }
-
-    .td-crumb-container {
-      display: none;
-    }
   }
 
   .td-category-header {
     margin-bottom: 40px;
     text-align: center;
-
-    .td-crumb-container {
-      display: none;
-    }
 
     .td-page-title {
       font-family: "Hind";
@@ -431,5 +464,15 @@
   // demos button
   #td-theme-settings .td-skin-buy a {
     background-color: #ef7691;
+  }
+
+  //author page > page title
+  &.author {
+
+    @media (min-width: @responsive_l_tablet_min) {
+      .td-page-title {
+        line-height: 42px;
+      }
+    }
   }
 }

@@ -138,10 +138,10 @@ if (TD_DEBUG_LIVE_THEME_STYLE) {
 								    foreach (td_global::$demo_list as $demo_id => $stack_params) {
 									    $td_demo_names[$stack_params['text']] = $demo_id;
 									    ?>
-									    <div class="td-set-theme-style"><a href="<?php echo td_global::$demo_list[$demo_id]['demo_url'] ?>" class="td-set-theme-style-link td-popup td-popup-<?php echo $td_demo_names[$stack_params['text']] ?>" data-img-url="<?php echo td_global::$get_template_directory_uri ?>/demos_popup/large/<?php echo $demo_id; ?>.jpg"></a></div>
+									    <div class="td-set-theme-style"><a href="<?php echo td_global::$demo_list[$demo_id]['demo_url'] ?>" class="td-set-theme-style-link td-popup td-popup-<?php echo $td_demo_names[$stack_params['text']] ?>" data-img-url="<?php echo td_global::$get_template_directory_uri ?>/demos_popup/large/<?php echo $demo_id; ?>.jpg"><span></span></a></div>
 								    <?php } ?>
 									<div class="td-set-theme-style-empty"><a href="#" class="td-popup td-popup-empty1"></a></div>
-<!--									<div class="td-set-theme-style-empty"><a href="#" class="td-popup td-popup-empty2"></a></div>-->
+									<div class="td-set-theme-style-empty"><a href="#" class="td-popup td-popup-empty2"></a></div>
 								    <div class="clearfix"></div>
 							    </div>
 						    </div>
@@ -156,6 +156,62 @@ if (TD_DEBUG_LIVE_THEME_STYLE) {
 	    }
 
 }
+
+function my_custom_login() {
+echo '<link rel="stylesheet" type="text/css" href="' . get_bloginfo('stylesheet_directory') . '/login/custom-login-styles.css" />';
+}
+add_action('login_head', 'my_custom_login');
+
+
+function my_login_logo_url() {
+return get_bloginfo( 'url' );
+}
+add_filter( 'login_headerurl', 'my_login_logo_url' );
+
+function my_login_logo_url_title() {
+return 'Treats';
+}
+add_filter( 'login_headertitle', 'my_login_logo_url_title' );
+
+function login_error_override()
+{
+    return 'Incorrect login details.';
+}
+add_filter('login_errors', 'login_error_override');
+
+
+function my_login_head() {
+remove_action('login_head', 'wp_shake_js', 12);
+}
+add_action('login_head', 'my_login_head');
+
+function admin_login_redirect( $redirect_to, $request, $user )
+{
+global $user;
+if( isset( $user->roles ) && is_array( $user->roles ) ) {
+if( in_array( "administrator", $user->roles ) ) {
+return $redirect_to;
+} else {
+return home_url();
+}
+}
+else
+{
+return $redirect_to;
+}
+}
+add_filter("login_redirect", "admin_login_redirect", 10, 3);
+
+function login_checked_remember_me() {
+add_filter( 'login_footer', 'rememberme_checked' );
+}
+add_action( 'init', 'login_checked_remember_me' );
+
+function rememberme_checked() {
+echo "<script>document.getElementById('rememberme').checked = true;</script>";
+}
+
+//td_demo_state::update_state("art_creek", 'full');
 
 //print_r(td_global::$all_theme_panels_list);
 //CUSTOM LOGIN PAGE

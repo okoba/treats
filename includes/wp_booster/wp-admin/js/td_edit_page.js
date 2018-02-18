@@ -7,30 +7,42 @@ var td_edit_page = {
 
     init: function () {
         jQuery().ready(function() {
-            var td_page_metabox = jQuery('#td_page_metabox'),
-                td_homepage_loop_metabox = jQuery('#td_homepage_loop_metabox');
+            var td_page_metabox = jQuery('#td_page_metabox');
 
-            //hide boxes - avoid displaying both at the same time, a class is used to avoid interference with "Screen Options" settings
-            td_page_metabox.addClass('td-hide-metabox');
-            td_homepage_loop_metabox.addClass('td-hide-metabox');
-            setTimeout( function() {
-                td_edit_page.show_template_settings();
+            // #td_page_metabox is removed when td composer is loaded. But it's not removed from those iframes of td composer which usually load backend settings (ex iframes with page settings)
+            if (td_page_metabox.length) {
 
-                jQuery('#page_template').change(function () {
+                var td_homepage_loop_metabox = jQuery( '#td_homepage_loop_metabox' );
+
+                //hide boxes - avoid displaying both at the same time, a class is used to avoid interference with "Screen Options" settings
+                td_page_metabox.addClass('td-hide-metabox');
+                td_homepage_loop_metabox.addClass('td-hide-metabox');
+                setTimeout(function () {
                     td_edit_page.show_template_settings();
-                });
 
-            }, 200);
+                    jQuery('#page_template').change(function () {
+                        td_edit_page.show_template_settings();
+                    });
 
-            //disable sidebar settings - if any vc_row is present in the page content
-            setInterval(function() {
-                var vcRows = jQuery('#content_ifr').contents().find('#tinymce').text().match(/\[.*vc_row.*\]/m);
-                if (vcRows !== null) {
-                    td_page_metabox.addClass('td-disable-settings');
-                } else {
-                    td_page_metabox.removeClass('td-disable-settings');
-                }
-            }, 500);
+                }, 200);
+
+                //disable sidebar settings - if any vc_row is present in the page content
+                setInterval(function () {
+
+                    // Disable meta box section when composer is active
+                    if ('undefined' !== typeof window.parent.tdcPostSettings) {
+                        td_page_metabox.addClass('td-disable-settings');
+                        return;
+                    }
+
+                    var vcRows = jQuery('#content_ifr').contents().find('#tinymce').text().match(/\[.*vc_row.*\]/m);
+                    if (vcRows !== null) {
+                        td_page_metabox.addClass('td-disable-settings');
+                    } else {
+                        td_page_metabox.removeClass('td-disable-settings');
+                    }
+                }, 500);
+            }
 
         });
 

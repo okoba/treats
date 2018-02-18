@@ -16,7 +16,7 @@ class td_module_single_base extends td_module {
         parent::__construct($post);
 
         //read post settings
-        $this->td_post_theme_settings = get_post_meta($post->ID, 'td_post_theme_settings', true);
+        $this->td_post_theme_settings = td_util::get_post_meta_array($post->ID, 'td_post_theme_settings');
 
         $this->is_single = is_single();
     }
@@ -108,7 +108,7 @@ class td_module_single_base extends td_module {
         //handle video post format
         if (get_post_format($this->post->ID) == 'video') {
             //if it's a video post...
-            $td_post_video = get_post_meta($this->post->ID, 'td_post_video', true);
+            $td_post_video = td_util::get_post_meta_array($this->post->ID, 'td_post_video');
 
             //render the video if the post has a video in the featured video section of the post
             if (!empty($td_post_video['td_video'])) {
@@ -350,7 +350,7 @@ class td_module_single_base extends td_module {
          * @see td_autoload_classes::loading_classes
          */
         //$td_smart_list = get_post_meta($this->post->ID, 'td_smart_list', true);
-	    $td_post_theme_settings = get_post_meta($this->post->ID, 'td_post_theme_settings', true);
+	    $td_post_theme_settings = td_util::get_post_meta_array($this->post->ID, 'td_post_theme_settings');
         if (!empty($td_post_theme_settings['smart_list_template'])) {
 
             $td_smart_list_class = $td_post_theme_settings['smart_list_template'];

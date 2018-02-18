@@ -103,9 +103,17 @@ Travel blog demo
   border: 1px dashed #e0e0e0;
   margin-bottom: 24px !important;
 }
+.td-blog-travel .td-blog-single a {
+  background-size: auto;
+  background-repeat: no-repeat;
+}
 .td-blog-travel .td-blog-single-last {
   border: 1px dashed #e0e0e0;
   margin-bottom: 0 !important;
+}
+.td-blog-travel .td-blog-single-last a {
+  background-size: auto;
+  background-repeat: no-repeat;
 }
 .td-blog-travel .block-title {
   border-bottom-width: 3px;
@@ -113,6 +121,9 @@ Travel blog demo
 .td-blog-travel .block-title span {
   padding: 0 0 8px 10px;
   background-color: transparent;
+}
+.td-blog-travel .td-footer-wrapper .block-title span {
+  color: #fff;
 }
 .td-blog-travel .td_block_template_1 .td-related-title {
   border-bottom-width: 3px;

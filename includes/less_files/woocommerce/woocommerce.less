@@ -67,7 +67,7 @@
       font-size: 12px;
     }
 
-    &:hover h3 {
+    &:hover .woocommerce-loop-product__title {
       color: #000;
     }
   }
@@ -195,7 +195,7 @@
   }
 
   // product titles
-  ul.products li.product h3 {
+  ul.products li.product .woocommerce-loop-product__title {
     font-size: 15px;
     font-weight: 500;
     line-height: 19px;
@@ -301,7 +301,7 @@
       margin: 0 !important;
     }
 
-    .related h2,
+    .related h2:not(.woocommerce-loop-product__title),
     .upsells h2 {
       color: #fff;
       background-color: #222;
@@ -512,7 +512,7 @@
   }
 
   table.cart td.actions .coupon .input-text {
-    padding: 9px 6px 5px;
+    padding: 5px 6px;
   }
 
   .product-price,
@@ -525,7 +525,13 @@
   }
 
   a.remove {
-    line-height: 15px !important;
+    line-height: 20px !important;
+    text-decoration: none;
+
+    /* responsive portrait phone */
+    @media (max-width: @responsive_p_phone_max) {
+      line-height: 14px !important;
+    }
   }
 
   #coupon_code {
@@ -536,6 +542,64 @@
     @media (max-width: @responsive_p_phone_max) {
       width: 100% !important;
       margin-bottom: 7px;
+    }
+  }
+
+  table.cart img {
+    display: block;
+  }
+
+  .cart_totals {
+    td {
+      text-align: right;
+    }
+
+    h2 {
+      padding-right: 20px;
+    }
+  }
+
+  .cross-sells {
+
+    /* responsive portrait tablet */
+    @media (min-width: @responsive_p_tablet_min) and (max-width: @responsive_p_tablet_max) {
+      .button {
+        width: auto !important;
+        float: none !important;
+      }
+    }
+  }
+}
+
+//account page
+.woocommerce-account {
+  font-family: @font1;
+
+  .woocommerce-MyAccount-navigation {
+    margin-bottom: 38px;
+
+    a {
+      color: #111;
+    }
+
+    a:hover {
+      text-decoration: none;
+      color: @td_theme_color;
+    }
+
+    ul {
+      list-style: none;
+      box-shadow: none;
+    }
+
+    li {
+      line-height: 30px;
+      list-style: none;
+      margin-left: 12px;
+
+      li {
+        margin-left: 21px;
+      }
     }
   }
 }
@@ -551,11 +615,6 @@
     text-align: right;
   }
 }
-
-.woocommerce-cart table.cart img {
-  display: block;
-}
-
 
 // woocommerce messages
 .woocommerce .woocommerce-message:before,
@@ -632,10 +691,17 @@
     background-color: #fcfcfc;
   }
 }
+
+//checkout page
 .woocommerce-checkout {
   p {
     font-size: 14px;
     line-height: 21px;
+
+    /* responsive portrait tablet */
+    @media (min-width: @responsive_p_tablet_min) and (max-width: @responsive_p_tablet_max) {
+      font-size: 12px;
+    }
   }
 }
 .woocommerce-checkout #payment {
@@ -646,10 +712,6 @@
 .woocommerce-checkout #payment div.payment_box {
   background-color: #fff;
   border: 1px solid #ededed;
-}
-
-.woocommerce-cart .cart_totals td {
-  text-align: right;
 }
 
 // cupon code
@@ -842,6 +904,11 @@
 
 // fix
 .woocommerce div.product div.images {
+
+  .woocommerce-product-gallery__image:nth-child(n+2) {
+    padding-top: 16px;
+  }
+
   /* responsive portrait phone */
   @media (max-width: @responsive_p_phone_max) {
       margin-bottom: 0;
@@ -904,7 +971,7 @@
 .woocommerce .products .star-rating {
   margin: 0.5em 0;
 }
-.woocommerce ul.products li.product h3 {
+.woocommerce ul.products li.product .woocommerce-loop-product__title {
   padding-bottom: 0;
 }
 

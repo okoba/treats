@@ -1,6 +1,6 @@
 <div class="td-page-options-tab-wrap">
     <div class="td-page-options-tab td-page-options-tab-active" data-panel-class="td-page-option-general"><a href="#">General</a></div>
-    <div class="td-page-options-tab" data-panel-class="td-page-option-unique-articles-2"><a href="#">Unique articles</a></div>
+    <div class="td-page-options-tab" data-panel-class="td-page-option-unique-articles-2"><a href="#">Unique Articles</a></div>
 </div>
 <div class="td-meta-box-inside">
 
@@ -78,7 +78,7 @@
         </div>
 
         <div class="td-disble-message" style="display: none;">
-            <p>While using Visual Composer sidebar settings are not available. To add a sidebar on page use the widgetised sidebar block.</p>
+            <p>While using a pagebuilder sidebar settings are not available. To add a sidebar on page use the widgetised sidebar block.</p>
         </div>
     </div> <!-- /page option general -->
 

@@ -210,7 +210,7 @@
 <?php echo td_panel_generator::box_end();?>
 
 
-<?php if ('Newspaper' == TD_THEME_NAME) { ?>
+<?php if ('Newspaper' == TD_THEME_NAME || 'ionMag' == TD_THEME_NAME) { ?>
     <!-- Force full width -->
     <?php echo td_panel_generator::box_start('Force full width', false); ?>
     <!-- text -->
@@ -325,9 +325,9 @@
 <!-- text -->
 <div class="td-box-row">
     <div class="td-box-description td-box-full">
-        <p>In this section you can configure the <a href="http://codex.wordpress.org/Template_Hierarchy" target="_blank">default wordpress templates</a>. Most of the templates support the following configurations:</p>
+        <p>In this section you can configure the <a href="http://codex.wordpress.org/Template_Hierarchy" target="_blank">default WordPress templates</a>. Most of the templates support the following configurations:</p>
         <ul>
-            <li>How to display posts in the default wordpress loops</li>
+            <li>How to display posts in the default WordPress loops</li>
             <li>Sidebar position</li>
             <li>What sidebar to show</li>
         </ul>
@@ -856,9 +856,9 @@
 
 
 <!-- Woocommerce template -->
-<?php echo td_panel_generator::box_start('Woocommerce template', false); ?>
+<?php echo td_panel_generator::box_start('WooCommerce template', false); ?>
     <div class="td-box-description td-box-full">
-        <p>Set the custom sidebar and position for the woocommerce pages.</p>
+        <p>Set the custom sidebar and position for the WooCommerce pages.</p>
     </div>
 
 

@@ -21,6 +21,20 @@ class td_block_template_6 extends td_block_template {
         $raw_css = "
         <style>
             /* @header_text_color */
+            .$unique_block_class .td-block-title > *,
+            .$unique_block_class .td-block-title:before {
+                color: @header_text_color !important;
+            }
+
+            /* @header_image */
+            .$unique_block_class .td-block-title {
+                background-image: url('@header_image') !important;
+            }
+            .$unique_block_class .td-block-title:before {
+                display: none !important;
+            }
+
+            /* @accent_text_color */
             .$unique_block_class .td_module_wrap:hover .entry-title a,
             .$unique_block_class .td-pulldown-filter-link:hover,
             .$unique_block_class .td-subcat-item a:hover,
@@ -31,16 +45,14 @@ class td_block_template_6 extends td_block_template {
             .$unique_block_class .td-opacity-author .td-post-author-name a:hover,
             .$unique_block_class .td-instagram-user a,
             .$unique_block_class .td-subcat-dropdown:hover .td-subcat-more span,
-            .$unique_block_class .td-subcat-dropdown:hover .td-subcat-more i,
-            .$unique_block_class .td-block-title > *,
-            .$unique_block_class .td-block-title:before {
-                color: @header_text_color !important;
+            .$unique_block_class .td-subcat-dropdown:hover .td-subcat-more i {
+                color: @accent_text_color !important;
             }
 
             .$unique_block_class .td-next-prev-wrap a:hover,
             .$unique_block_class .td-load-more-wrap a:hover {
-                background-color: @header_text_color !important;
-                border-color: @header_text_color !important;
+                background-color: @accent_text_color !important;
+                border-color: @accent_text_color !important;
             }
 
             .$unique_block_class .td-read-more a,
@@ -50,22 +62,16 @@ class td_block_template_6 extends td_block_template {
             .td-footer-wrapper .$unique_block_class .td-post-category,
             .$unique_block_class .td-post-category:hover,
             .$unique_block_class .td-subcat-dropdown ul:after {
-                background-color: @header_text_color !important;
+                background-color: @accent_text_color !important;
             }
 
-            /* @header_image */
-            .$unique_block_class .td-block-title {
-                background-image: url('@header_image') !important;
-            }
-            .$unique_block_class .td-block-title:before {
-                display: none !important;
-            }
         </style>
     ";
 
         $td_css_compiler = new td_css_compiler($raw_css);
         $td_css_compiler->load_setting_raw('header_text_color', $this->get_att('header_text_color'));
         $td_css_compiler->load_setting_raw('header_image', wp_get_attachment_url($this->get_att('header_image'))); // @TODO tre citit dupa ID
+        $td_css_compiler->load_setting_raw('accent_text_color', $this->get_att('accent_text_color'));
 
         $compiled_style = $td_css_compiler->compile_css();
 

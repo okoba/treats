@@ -23,7 +23,7 @@ $loop_sidebar_position = td_util::get_option('tds_' . $template_id . '_sidebar_p
 
 // read the custom single post settings - this setting overwrites all of them
 // YES! WE USE THE SAME SINGLE POST SETTINGS for woo commerce
-$td_post_theme_settings = get_post_meta($post->ID, 'td_post_theme_settings', true);
+$td_post_theme_settings = td_util::get_post_meta_array($post->ID, 'td_post_theme_settings');
 if (!empty($td_post_theme_settings['td_sidebar_position'])) {
     $loop_sidebar_position = $td_post_theme_settings['td_sidebar_position'];
 }
@@ -36,7 +36,7 @@ if($loop_sidebar_position == 'sidebar_left') {
 }
 
 ?>
-    <div class="td-main-content-wrap td-main-page-wrap">
+    <div class="td-main-content-wrap td-main-page-wrap td-container-wrap">
         <div class="td-container <?php echo $td_sidebar_position; ?>">
             <div class="td-pb-row">
                 <?php

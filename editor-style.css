@@ -631,7 +631,15 @@ figure.aligncenter {
 .td_block_text_with_title object,
 .woocommerce #tab-description object,
 .mce-content-body object {
-  max-width: 100%;
+  max-width: 100% !important;
+}
+.td-page-content iframe.instagram-media,
+.td-post-content iframe.instagram-media,
+.wpb_text_column iframe.instagram-media,
+.td_block_text_with_title iframe.instagram-media,
+.woocommerce #tab-description iframe.instagram-media,
+.mce-content-body iframe.instagram-media {
+  margin: 1px 0 12px !important;
 }
 .entry-title a:hover,
 .td-post-category:hover,
@@ -1193,6 +1201,122 @@ blockquote.pull-right:after {
   margin-bottom: 26px;
 }
 /*  ----------------------------------------------------------------------------
+    button
+*/
+.td_btn {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  color: white;
+  font-family: 'Open Sans', arial, sans-serif;
+  font-weight: 600;
+}
+.td_btn_sm {
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.td_btn_sm.td_round_btn {
+  border-radius: 3px;
+}
+.td_btn_md {
+  padding: 9px 12px;
+  font-size: 16px;
+  line-height: 20px;
+}
+.td_btn_md.td_round_btn {
+  border-radius: 4px;
+}
+.td_btn_lg {
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+}
+.td_btn_lg.td_round_btn {
+  border-radius: 6px;
+}
+.td_default_btn,
+.td_round_btn {
+  transition: background-color 0.1s ease;
+  -webkit-transition: background-color 0.1s ease;
+  background-color: #4db2ec;
+}
+.td_default_btn:hover,
+.td_round_btn:hover {
+  background-color: #444 !important;
+}
+.td_default_btn:active,
+.td_round_btn:active {
+  background-color: #000 !important;
+}
+.td_outlined_btn {
+  border-width: 2px;
+  border-style: solid;
+  border-color: #4db2ec;
+  border-radius: 4px;
+  color: #4db2ec;
+  background-color: transparent;
+  transition: all 0.1s ease ;
+  -webkit-transition: all 0.1s ease;
+}
+.td_outlined_btn:hover {
+  background-color: #4db2ec;
+  color: #fff;
+}
+.td_outlined_btn:active {
+  background-color: #444 !important;
+  border-color: #444;
+}
+.td_shadow_btn {
+  background-color: #4db2ec;
+  top: 0;
+  -webkit-box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.25);
+  transition: top 0.1s ease;
+  -webkit-transition: top 0.1s ease;
+}
+.td_shadow_btn:hover {
+  top: -3px;
+  -webkit-box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.25);
+  box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.25);
+}
+.td_shadow_btn:active {
+  background-color: #444 !important;
+}
+.td_3D_btn {
+  background-color: #4db2ec;
+  top: 0;
+  transition: top 0.1s ease;
+  -webkit-transition: top 0.1s ease;
+}
+.td_3D_btn:after {
+  content: "";
+  position: absolute;
+  display: block;
+  left: 0;
+  top: 100%;
+  width: 100%;
+  height: 5px;
+  background-color: rgba(0, 0, 0, 0.25);
+  z-index: 0;
+  transition: height 0.1s ease;
+  -webkit-transition: height 0.1s ease;
+}
+.td_3D_btn:hover {
+  top: 5px;
+}
+.td_3D_btn:hover:before {
+  height: 0;
+}
+.td_3D_btn:hover:after {
+  height: 0;
+}
+.td_3D_btn:active {
+  background-color: #444 !important;
+}
+/*  ----------------------------------------------------------------------------
     text highlighting
 */
 .td_text_highlight_0 {
@@ -1328,8 +1452,8 @@ blockquote.pull-right:after {
 }
 @font-face {
   font-family: 'newspaper';
-  src: url('images/icons/newspaper.eot?12');
-  src: url('images/icons/newspaper.eot?12#iefix') format('embedded-opentype'), url('images/icons/newspaper.woff?12') format('woff'), url('images/icons/newspaper.ttf?12') format('truetype'), url('images/icons/newspaper.svg?12#newspaper') format('svg');
+  src: url('images/icons/newspaper.eot?14');
+  src: url('images/icons/newspaper.eot?14#iefix') format('embedded-opentype'), url('images/icons/newspaper.woff?14') format('woff'), url('images/icons/newspaper.ttf?14') format('truetype'), url('images/icons/newspaper.svg?14#newspaper') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -1549,6 +1673,9 @@ blockquote.pull-right:after {
 }
 .td-icon-block-header:before {
   content: '\e904';
+}
+.td-icon-home:before {
+  content: '\e905';
 }
 .td-social-icon-wrap:hover .td-icon-font {
   -webkit-transition: color 0.3s;
@@ -1902,6 +2029,9 @@ html .mceContentBody-max-width-big:after {
 }
 .mce-content-body .gallery-columns-1 img {
   width: 100%;
+}
+.mce-content-body .td_btn {
+  pointer-events: none;
 }
 .wp-caption-dd {
   padding: 0 !important;

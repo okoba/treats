@@ -134,7 +134,8 @@
 
 
 // recent comments
-.widget_recent_comments {
+.widget_recent_comments,
+.td_wp_recentcomments {
   margin-bottom: 42px;
   font-size: 12px;
   color: #444;
@@ -155,15 +156,46 @@
     font-weight: 600;
   }
 
-  li {
+  .recentcomments {
+    display: block;
     margin: 10px 12px !important;
     line-height: 21px;
     padding-bottom: 13px;
     border-bottom: 1px dashed #f1f1f1;
+  }
+}
 
+.widget_recent_comments {
+  .recentcomments {
     &:last-child {
       border-bottom: 0;
       padding-bottom: 0;
+    }
+  }
+}
+
+.td_wp_recentcomments {
+  & > div {
+    &:first-child {
+      .recentcomments {
+        margin-top: 0 !important;
+      }
+    }
+
+    &:last-child {
+      .recentcomments {
+        border-bottom: 0;
+        margin-bottom: 0 !important;
+        padding-bottom: 0;
+      }
+    }
+  }
+
+  a {
+    color: #111;
+
+    &:hover {
+      color: @td_theme_color;
     }
   }
 }

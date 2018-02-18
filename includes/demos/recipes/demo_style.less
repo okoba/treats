@@ -2,6 +2,8 @@
 
 /* Recipes demo */
 .td-recipes {
+  background-position: center bottom;
+
   &.td-boxed-layout #td-outer-wrap {
     /* responsive on desktop */
     @media (min-width: 1180px) {
@@ -209,17 +211,32 @@
   // dropcap
   .dropcap1 {
     font-size: 21px;
-    line-height: 70px;
+    line-height: 68px;
     background-color: transparent;
     color: black;
     padding: 0;
     border: 1px solid #ededed;
     width: 70px;
     height: 70px;
+
+    /* responsive portrait phone */
+    @media (max-width: @responsive_p_tablet_max) {
+      font-size: 18px;
+      line-height: 59px;
+      width: 60px;
+      height: 60px;
+    }
   }
 
   // demos button
   #td-theme-settings .td-skin-buy a {
     background-color: #35a533;
+  }
+}
+
+.td-md-is-android .td-recipes .dropcap1 {
+  /* responsive portrait phone */
+  @media (max-width: @responsive_p_tablet_max) {
+    line-height: 52px;
   }
 }

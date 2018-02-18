@@ -4,6 +4,10 @@
 /* responsive landscape tablet */
 /* responsive portrait tablet */
 /* responsive portrait phone */
+.td-blog-beauty .td-header-style-11 + .td-main-content-wrap .td-crumb-container,
+.td-blog-beauty .td-header-style-11 + .td-category-header .td-crumb-container {
+  display: none;
+}
 .td-blog-beauty .td-header-style-11 .sf-menu > li > a:hover,
 .td-blog-beauty .td-header-style-11 .sf-menu > .sfHover > a,
 .td-blog-beauty .td-header-style-11 .sf-menu > .current-menu-item > a,
@@ -21,6 +25,15 @@
 .td-blog-beauty .td-header-style-11 .td-logo-wrap-full {
   border: none;
   margin-top: 35px;
+}
+.td-blog-beauty .td-header-style-11 .td-logo-wrap-full .td-main-logo img {
+  /* responsive landscape tablet */
+}
+@media (max-width: 1140px) {
+  .td-blog-beauty .td-header-style-11 .td-logo-wrap-full .td-main-logo img {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
 }
 .td-blog-beauty .td-header-style-11 .td-a-rec-id-header > div,
 .td-blog-beauty .td-header-style-11 .td-g-rec-id-header > .adsbygoogle {
@@ -57,10 +70,33 @@
 .td-blog-beauty .td_block_big_grid_2.td-grid-style-5.td-hover-1 .td-big-grid-post:hover .td-module-thumb a:last-child:before {
   box-shadow: none;
 }
-.td-blog-beauty .vc_separator h4 {
-  font-family: "Hind";
-  font-size: 16px;
-  line-height: 1;
+.td-blog-beauty .td-beauty-blog-title-block {
+  margin-top: 15px;
+  margin-bottom: 36px;
+}
+.td-blog-beauty .td-beauty-blog-title-block .td-block-title {
+  padding: 0;
+}
+.td-blog-beauty .td-beauty-blog-title-block .td-block-title:before {
+  display: none;
+}
+.td-blog-beauty .td-beauty-blog-title-block span {
+  position: relative;
+}
+.td-blog-beauty .td-beauty-blog-title-block span:before,
+.td-blog-beauty .td-beauty-blog-title-block span:after {
+  content: '';
+  position: absolute;
+  bottom: 5px;
+  width: 69px;
+  height: 2px;
+  background-color: #2a2a2a;
+}
+.td-blog-beauty .td-beauty-blog-title-block span:before {
+  left: -82px;
+}
+.td-blog-beauty .td-beauty-blog-title-block span:after {
+  right: -82px;
 }
 .td-blog-beauty .td_block_5 .td-module-meta-info {
   display: none;
@@ -241,15 +277,9 @@
 .td-blog-beauty .td-post-template-default .td-post-title {
   text-align: center;
 }
-.td-blog-beauty .td-post-template-default .td-crumb-container {
-  display: none;
-}
 .td-blog-beauty .td-category-header {
   margin-bottom: 40px;
   text-align: center;
-}
-.td-blog-beauty .td-category-header .td-crumb-container {
-  display: none;
 }
 .td-blog-beauty .td-category-header .td-page-title {
   font-family: "Hind";
@@ -331,4 +361,9 @@
 }
 .td-blog-beauty #td-theme-settings .td-skin-buy a {
   background-color: #ef7691;
+}
+@media (min-width: 1019px) {
+  .td-blog-beauty.author .td-page-title {
+    line-height: 42px;
+  }
 }

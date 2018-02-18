@@ -901,8 +901,13 @@ var tdMenu = {};
 })();
 
 
-//initialize menu
-tdMenu.init();
+jQuery().ready(function() {
+
+    'use strict';
+
+    //initialize menu
+    tdMenu.init();
+});
 /*
  td_util.js
  v2.0
@@ -1817,29 +1822,30 @@ function td_resize_videos() {
 
     });
 
+
     //facebook in content
-    jQuery(document).find('iframe[src*="facebook.com/plugins/video.php"]').each(function() {
-        var td_video = jQuery(this);
-        if ( td_video.parent().hasClass('wpb_video_wrapper') ) {
-            td_video.attr('width', '100%');
-            var td_video_width = td_video.width();
-            td_video.css('height', td_video_width * 0.5625, 'important');
-        } else {
-            td_video.css('max-width', '100%');
-        }
-    });
+    //jQuery(document).find('iframe[src*="facebook.com/plugins/video.php"]').each(function() {
+    //    var td_video = jQuery(this);
+    //    if ( td_video.parent().hasClass('wpb_video_wrapper') ) {
+    //        td_video.attr('width', '100%');
+    //        var td_video_width = td_video.width();
+    //        td_video.css('height', td_video_width * 0.5625, 'important');
+    //    } else {
+    //        td_video.css('max-width', '100%');
+    //    }
+    //});
 
 
     //wordpress embedded
-    jQuery(document).find(".wp-video-shortcode").each(function() {
-        var td_video = jQuery(this);
-
-        var td_video_width = td_video.width() + 3;
-        jQuery(this).parent().css('height', td_video_width * 0.56, 'important');
-        //td_video.css('height', td_video_width * 0.6, 'important')
-        td_video.css('width', '100%', 'important');
-        td_video.css('height', '100%', 'important');
-    })
+    //jQuery(document).find(".wp-video-shortcode").each(function() {
+    //    var td_video = jQuery(this);
+    //
+    //    var td_video_width = td_video.width() + 3;
+    //    jQuery(this).parent().css('height', td_video_width * 0.56, 'important');
+    //    //td_video.css('height', td_video_width * 0.6, 'important')
+    //    td_video.css('width', '100%', 'important');
+    //    td_video.css('height', '100%', 'important');
+    //})
 }
 
 
@@ -2006,7 +2012,7 @@ if(!tdDetect.isTouchDevice && tdUtil.getBackendVar('td_ad_background_click_link'
         var target_jquery_obj = jQuery(target);
 
         // td-outer-container for NEWSMAG and td-boxex-layout for NEWSPAPER
-        if (target_jquery_obj.hasClass('td-outer-container') || target_jquery_obj.hasClass('td-boxed-layout')) {
+        if (target_jquery_obj.hasClass('td-outer-container') || target_jquery_obj.hasClass('td-theme-wrap') || target_jquery_obj.hasClass('td-header-wrap')) {
 
             //open the link ad page
             if(td_ad_background_click_target == '_blank') {
@@ -7947,7 +7953,7 @@ var tdPullDown = {};
 
             // the minimum no. of elements to be shown by the horizontal list
             // - IT CAN BE SPECIFIED
-            this.minimum_elements = 2;
+            this.minimum_elements = 1;
 
 
 
@@ -10373,39 +10379,41 @@ if (tdUtil.getBackendVar('tds_smart_sidebar') == 'enabled' && tdDetect.isIos ===
  *
  */
 
+jQuery(window).load( function() {
+
 // block subcategory ajax filters!
-jQuery('.td-subcat-filter').each(function(index, element) {
-    var jquery_object_container = jQuery(element);
-    var horizontal_jquery_obj = jquery_object_container.find('.td-subcat-list:first');
+    jQuery('.td-subcat-filter').each(function (index, element) {
+        var jquery_object_container = jQuery(element);
+        var horizontal_jquery_obj = jquery_object_container.find('.td-subcat-list:first');
 
-    var pulldown_item_obj = new tdPullDown.item();
-    pulldown_item_obj.blockUid = jquery_object_container.parent().parent().data('td-block-uid'); // get the block UID
-    pulldown_item_obj.horizontal_jquery_obj = horizontal_jquery_obj;
-    pulldown_item_obj.vertical_jquery_obj = jquery_object_container.find('.td-subcat-dropdown:first');
-    pulldown_item_obj.horizontal_element_css_class = 'td-subcat-item';
-    pulldown_item_obj.container_jquery_obj = horizontal_jquery_obj.closest( '.td-block-title-wrap' );
+        var pulldown_item_obj = new tdPullDown.item();
+        pulldown_item_obj.blockUid = jquery_object_container.parent().parent().data('td-block-uid'); // get the block UID
+        pulldown_item_obj.horizontal_jquery_obj = horizontal_jquery_obj;
+        pulldown_item_obj.vertical_jquery_obj = jquery_object_container.find('.td-subcat-dropdown:first');
+        pulldown_item_obj.horizontal_element_css_class = 'td-subcat-item';
+        pulldown_item_obj.container_jquery_obj = horizontal_jquery_obj.closest('.td-block-title-wrap');
 
-    // '.td-pulldown-size' are the elements excluded
-    pulldown_item_obj.excluded_jquery_elements = [pulldown_item_obj.container_jquery_obj.find('.td-pulldown-size')];
-    tdPullDown.add_item(pulldown_item_obj);
-});
+        // '.td-pulldown-size' are the elements excluded
+        pulldown_item_obj.excluded_jquery_elements = [pulldown_item_obj.container_jquery_obj.find('.td-pulldown-size')];
+        tdPullDown.add_item(pulldown_item_obj);
+    });
 
 
 // on category pages
-jQuery('.td-category-siblings').each(function(index, element) {
-    var jquery_object_container = jQuery(element);
-    var horizontal_jquery_obj = jquery_object_container.find('.td-category:first');
+    jQuery('.td-category-siblings').each(function (index, element) {
+        var jquery_object_container = jQuery(element);
+        var horizontal_jquery_obj = jquery_object_container.find('.td-category:first');
 
-    var pulldown_item_obj = new tdPullDown.item();
-    pulldown_item_obj.horizontal_jquery_obj = horizontal_jquery_obj;
-    pulldown_item_obj.vertical_jquery_obj = jquery_object_container.find('.td-subcat-dropdown:first');
-    pulldown_item_obj.horizontal_element_css_class = 'entry-category';
-    pulldown_item_obj.container_jquery_obj = horizontal_jquery_obj.parents('.td-category-siblings:first');
-    tdPullDown.add_item(pulldown_item_obj);
+        var pulldown_item_obj = new tdPullDown.item();
+        pulldown_item_obj.horizontal_jquery_obj = horizontal_jquery_obj;
+        pulldown_item_obj.vertical_jquery_obj = jquery_object_container.find('.td-subcat-dropdown:first');
+        pulldown_item_obj.horizontal_element_css_class = 'entry-category';
+        pulldown_item_obj.container_jquery_obj = horizontal_jquery_obj.parents('.td-category-siblings:first');
+        tdPullDown.add_item(pulldown_item_obj);
+
+    });
 
 });
-
-
 
 
 

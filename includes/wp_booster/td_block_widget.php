@@ -158,7 +158,7 @@ class td_block_widget extends WP_Widget {
                 </div>
 
                 <script>
-                    td_widget_attach_color_picker();
+                    //td_widget_attach_color_picker();
                 </script>
 
                 <?php

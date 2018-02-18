@@ -49,11 +49,11 @@ class td_page_views {
             //used for 7 day count array
             $current_day = date("N") - 1;  //get the current day
             $current_date = date("U"); //get the current Unix date
-            $count_7_day_array = get_post_meta($postID, self::$post_view_counter_7_day_array, true);  // get the array with day of week -> count
+            $count_7_day_array = td_util::get_post_meta_array($postID, self::$post_view_counter_7_day_array);  // get the array with day of week -> count
 
 
             //check if the first entry is an array (used to detect and reset the older themes array)
-            if (is_array($count_7_day_array) && is_array($count_7_day_array[0])) {
+            if (isset($count_7_day_array[0]) && is_array($count_7_day_array[0])) {
 
 
                 if (isset($count_7_day_array[$current_day])) { // check to see if the current day is defined - if it's not defined it's not ok.
